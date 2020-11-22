@@ -81,7 +81,7 @@ export const NEEDS_COMMON_ROL= [
     { title: 'Taika', elements: ['Ramybė', 'Pusiausvyra', 'Balansas', 'Pakankamumas', 'Grožis', 'Bendrystė', 'Lengvumas', 'Sklandumas', 'Darna', 'Viltis', 'Tvarka', 'Nuoseklumas' ]  },
     { title: 'Autentiškumas', elements: ['Sąžiningumas', 'Principingumas', 'Buvimas' ]  },
     { title: 'Fizinė Gerovė', elements: ['Oras', 'Vanduo', 'Komfortas', 'Maistas', 'Judėjimas', 'Poilsis', 'Saugumas', 'Seksualumo išraiška', 'Pastogė', 'Prisilietimas' ]  },
-    { title: 'Autonomija', elements: ['Pasirinkimas', 'Orumas', 'Nepriklausomybė', 'Saviraiška', 'Erdvė', 'Spontaniškumas' ]  },
+    { title: 'Autonomija', elements: ['Laisvė', 'Pasirinkimas', 'Orumas', 'Nepriklausomybė', 'Saviraiška', 'Erdvė', 'Spontaniškumas' ]  },
     { title: 'Žaidimas', elements: ['Nuotykis', 'Susijaudinimas', 'Entuziazmas', 'Linksmumas', 'Smagumas', 'Humoras', 'Džiaugsmas', 'Atsipalaidavimas', 'Stimuliavimas' ]  },
   ];
 

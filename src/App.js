@@ -263,6 +263,11 @@ export default function App() {
                       {jausmai.map((element) => (
                         <p class="text">{element}</p>
                       ))}
+                                       <Form>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                          <Form.Control as="textarea" rows={3} />
+                        </Form.Group>
+                      </Form>
                     </Col>
                     <Col>
                       <p>
@@ -273,7 +278,11 @@ export default function App() {
                       </p>
                       {poreikiai.map((element) => (
                         <p class="text">{element}</p>
-                      ))}
+                      ))}                 <Form>
+                      <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Control as="textarea" rows={3} />
+                      </Form.Group>
+                    </Form>
                     </Col>
                     <Col>Ar gerai tave suprantu?</Col>
                   </Row>
