@@ -11,6 +11,7 @@ import {
   Container,
   Row,
   Col,
+  Form
 } from "react-bootstrap";
 
 export default function App() {
@@ -122,7 +123,7 @@ export default function App() {
         </div>
       </Alert>
 
-      <Accordion>
+      <Accordion defaultActiveKey="0">
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="0">
@@ -159,7 +160,7 @@ export default function App() {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="0">
-            Jausmai, kai poreikiai nėra patenkinti
+              Jausmai, kai poreikiai nėra patenkinti
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey="0">
@@ -188,12 +189,11 @@ export default function App() {
         </Card>
       </Accordion>
 
-
       <Accordion>
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="0">
-             Jausmai, kai poreikiai patenkinti
+              Jausmai, kai poreikiai patenkinti
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey="0">
@@ -222,45 +222,135 @@ export default function App() {
         </Card>
       </Accordion>
       <hr />
+
       <Container>
         <p>
           Konstruktyvus konflikto deeskalavimas atsižvelgiant į abiejų pusių
           poreikius ir jausmus.
         </p>
-        <p>
-          <b>1. Žingsnis.</b> Atspindėjimas kitos pusės jausmus ir poreikius.
-        </p>
-        <Row>
-          <Col>
-            <p>
-              <b>Stebėjimas</b>
-            </p>{" "}
-            <i>kai matau / girdžiu</i>
-          </Col>
-          <Col>
-            <p>
-              <b>Jausmai</b>
-            </p>{" "}
-            <p>
-              <i>atrodo, kad jauti</i>
-            </p>
-            {jausmai.map((element) => (
-              <p class="text">{element}</p>
-            ))}
-          </Col>
-          <Col>
-            <p>
-              <b>Poreikis</b>
-            </p>{" "}
-            <p>
-              <i>nes yra noras?</i>
-            </p>
-            {poreikiai.map((element) => (
-              <p class="text">{element}</p>
-            ))}
-          </Col>
-          <Col>Ar gerai tave suprantu?</Col>
-        </Row>
+
+        <Accordion defaultActiveKey="0">
+          <div className="text">
+            <Card>
+              <Card.Header>
+                <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                  <b>1. Žingsnis.</b> Atspindėjimas kitos pusės jausmus ir
+                  poreikius.
+                </Accordion.Toggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey="0">
+                <Card.Body>
+                  <Row>
+                    <Col>
+                      <p>
+                        <b>Stebėjimas</b>
+                      </p>{" "}
+                      <p>
+                      <i>kai matau / girdžiu</i></p>
+                      <Form>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                          <Form.Control as="textarea" rows={3} />
+                        </Form.Group>
+                      </Form>
+                    </Col>
+                    <Col>
+                      <p>
+                        <b>Jausmai</b>
+                      </p>{" "}
+                      <p>
+                        <i>atrodo, kad jauti</i>
+                      </p>
+                      {jausmai.map((element) => (
+                        <p class="text">{element}</p>
+                      ))}
+                    </Col>
+                    <Col>
+                      <p>
+                        <b>Poreikis</b>
+                      </p>{" "}
+                      <p>
+                        <i>nes yra noras?</i>
+                      </p>
+                      {poreikiai.map((element) => (
+                        <p class="text">{element}</p>
+                      ))}
+                    </Col>
+                    <Col>Ar gerai tave suprantu?</Col>
+                  </Row>
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </div>
+        </Accordion>
+
+        <hr />
+        <Accordion className="text">
+          <Card>
+            <Card.Header>
+              <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                <b>2. Žingsnis.</b> Išsakymas savo jausmų ir poreikių.
+              </Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey="0">
+              <Card.Body>
+                <Row>
+                  <Col>
+                    <p>
+                      <b>Stebėjimas</b>
+                    </p>{" "}
+                    <p>
+                      <i>Pastebiu, kad:</i>
+                    </p>
+                    <Form>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                          <Form.Control as="textarea" rows={3} />
+                        </Form.Group>
+                      </Form>
+                  </Col>
+                  <Col>
+                    <p>
+                      <b>Jausmai</b>
+                    </p>{" "}
+                    <p>
+                      <i>Jaučiu:</i>
+                    </p>
+                    <Form>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                          <Form.Control as="textarea" rows={3} />
+                        </Form.Group>
+                      </Form>
+                  </Col>
+                  <Col>
+                    <p>
+                      <b>Poreikis</b>
+                    </p>{" "}
+                    <p>
+                      <i>Nes norisi:</i>
+                    </p>
+                    <Form>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                          <Form.Control as="textarea" rows={3} />
+                        </Form.Group>
+                      </Form>
+                  </Col>
+                  <Col>
+                    <p>
+                      <b>Prašumas</b>
+                    </p>{" "}
+                    <p>
+                      <i>Ar tau tiktų jeigu...?</i>
+                    </p>
+                    <Form>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                          <Form.Control as="textarea" rows={3} />
+                        </Form.Group>
+                      </Form>
+                  </Col>
+                </Row>
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+        </Accordion>
       </Container>
     </Container>
   );

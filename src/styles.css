@@ -4,8 +4,12 @@
   max-width: 100%;
   color: #9b9b9b;
 }
-.text {
-  color: #212127;
+.text    {
+  color: blue;
+}
+
+.text  .col   {
+  color: #0e0e0f;
 }
 
 .column {
