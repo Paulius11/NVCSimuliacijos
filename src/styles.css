@@ -4,6 +4,10 @@
   max-width: 100%;
   color: #9b9b9b;
 }
+.text {
+  color: #212127;
+}
+
 .column {
   padding: 22px;
 }

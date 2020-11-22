@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import "./styles.css";
 import InlineEdit from "./components/inlineEdit";
-import {
-  NEEDS_COMMON_IEVA,
-  NEEDS_COMMON_ROL,
-  NEEDS_COMMON_CNVC,
-} from "./data/data";
+import { NEEDS_COMMON_ROL, NEEDS_UNMET_ROL, NEEDS_MET_ROL } from "./data/data";
 
 import {
   Accordion,
@@ -26,7 +22,8 @@ export default function App() {
   const [side2, setSide2] = useState("2 pusė");
   const [side3, setSide3] = useState("3 pusė");
 
-  const [side1data, setSide1Data] = useState([]);
+  const [poreikiai, setPoreikiai] = useState([]);
+  const [jausmai, setJausmai] = useState([]);
 
   const sides = {
     firstSide: "Pirma pusė",
@@ -50,8 +47,12 @@ export default function App() {
     const tagName = e.target.tagName;
     const choiceColor = getColor();
     const textContent = e.target.textContent;
+    const classOfJausmOrPoreik =
+      e.target.parentElement.parentElement.parentElement.parentElement
+        .className;
+
     console.log(
-      `target color: ${targetColor} choice color: ${choiceColor}\tagName: ${tagName} text: ${textContent}`
+      `target color: ${targetColor} choice color: ${choiceColor}\tagName: ${tagName} text: ${textContent} class: ${classOfJausmOrPoreik}`
     );
     let newColor = DEFAULT_COLOR;
     // add to list if conditions are met
@@ -62,13 +63,33 @@ export default function App() {
       tagName == "LI"
     ) {
       newColor = choiceColor;
-      // adding element and removing dublicates from array
-      side1data.indexOf(textContent) === -1
-        ? setSide1Data((oldArray) => [...oldArray, textContent])
-        : console.log("This item already exists");
+
+      if (classOfJausmOrPoreik == "poreikiai") {
+        // adding element and removing dublicates from array
+        if (poreikiai.indexOf(textContent) === -1) {
+          setPoreikiai((oldArray) => [...oldArray, textContent]);
+        } else {
+          console.log("This item already exists");
+        }
+      }
+
+      if (classOfJausmOrPoreik == "jausmai") {
+        // adding element and removing dublicates from array
+        if (jausmai.indexOf(textContent) === -1) {
+          setJausmai((oldArray) => [...oldArray, textContent]);
+        } else {
+          console.log("This item already exists");
+        }
+      }
     } else {
       newColor = null;
-      setSide1Data(side1data.filter((e)=>(e !== textContent)))
+      // remove element from list
+      if (classOfJausmOrPoreik == "poreikiai") {
+        setPoreikiai(poreikiai.filter((e) => e !== textContent));
+      }
+      if (classOfJausmOrPoreik == "jausmai") {
+        setJausmai(jausmai.filter((e) => e !== textContent));
+      }
     }
     e.target.style.color = newColor;
     console.log(targetColor);
@@ -101,7 +122,7 @@ export default function App() {
         </div>
       </Alert>
 
-      <Accordion defaultActiveKey="0">
+      <Accordion>
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="0">
@@ -134,24 +155,108 @@ export default function App() {
         </Card>
       </Accordion>
 
+      <Accordion>
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+            Jausmai, kai poreikiai nėra patenkinti
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="0">
+            <Card.Body>
+              {" "}
+              <div className="Column">
+                <Row>
+                  {NEEDS_UNMET_ROL.map((s) => (
+                    <div class="jausmai">
+                      <h4>{s.title}</h4>
+                      <div style={spalva} onClick={(e) => setColor(e)}>
+                        <ol>
+                          {s.elements.map((jausmas) => (
+                            <Col>
+                              <li key={jausmas}>{jausmas}</li>
+                            </Col>
+                          ))}
+                        </ol>
+                      </div>
+                    </div>
+                  ))}
+                </Row>
+              </div>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
+
+
+      <Accordion>
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+             Jausmai, kai poreikiai patenkinti
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="0">
+            <Card.Body>
+              {" "}
+              <div className="Column">
+                <Row>
+                  {NEEDS_MET_ROL.map((s) => (
+                    <div class="jausmai">
+                      <h4>{s.title}</h4>
+                      <div style={spalva} onClick={(e) => setColor(e)}>
+                        <ol>
+                          {s.elements.map((jausmas) => (
+                            <Col>
+                              <li key={jausmas}>{jausmas}</li>
+                            </Col>
+                          ))}
+                        </ol>
+                      </div>
+                    </div>
+                  ))}
+                </Row>
+              </div>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
       <hr />
       <Container>
         <p>
           Konstruktyvus konflikto deeskalavimas atsižvelgiant į abiejų pusių
           poreikius ir jausmus.
         </p>
-        <p><b>1. Žingsnis.</b> Atspindėjimas kitos pusės jausmus ir poreikius.</p>
+        <p>
+          <b>1. Žingsnis.</b> Atspindėjimas kitos pusės jausmus ir poreikius.
+        </p>
         <Row>
           <Col>
-            <p><b>Stebėjimas</b></p> <i>kai matau / girdžiu</i>
+            <p>
+              <b>Stebėjimas</b>
+            </p>{" "}
+            <i>kai matau / girdžiu</i>
           </Col>
           <Col>
-            <p><b>Jausmas</b></p> <i>atrodo, kad jauti</i>
+            <p>
+              <b>Jausmai</b>
+            </p>{" "}
+            <p>
+              <i>atrodo, kad jauti</i>
+            </p>
+            {jausmai.map((element) => (
+              <p class="text">{element}</p>
+            ))}
           </Col>
           <Col>
-            <p><b>Poreikis</b></p> <p><i>nes yra noras?</i></p>
-            {side1data.map((element) => (
-              <p>{element}</p>
+            <p>
+              <b>Poreikis</b>
+            </p>{" "}
+            <p>
+              <i>nes yra noras?</i>
+            </p>
+            {poreikiai.map((element) => (
+              <p class="text">{element}</p>
             ))}
           </Col>
           <Col>Ar gerai tave suprantu?</Col>
