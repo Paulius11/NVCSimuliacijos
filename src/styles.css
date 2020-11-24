@@ -7,6 +7,9 @@
 .text    {
   color: blue;
 }
+.row {
+  justify-content: space-between;
+}
 
 .text  .col   {
   color: #0e0e0f;
