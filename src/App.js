@@ -11,7 +11,7 @@ import {
   Container,
   Row,
   Col,
-  Form
+  Form,
 } from "react-bootstrap";
 
 export default function App() {
@@ -24,7 +24,14 @@ export default function App() {
   const [side3, setSide3] = useState("3 pusė");
 
   const [poreikiai, setPoreikiai] = useState([]);
+  const [poreikiaiPirma, setPoreikiaiPirma] = useState([]);
+  const [poreikiaiAntra, setPoreikiaiAntra] = useState([]);
+  const [poreikiaiKartu, setPoreikiaiKart] = useState([]);
+
   const [jausmai, setJausmai] = useState([]);
+  const [jausmaiPirma, setJausmaiPirma] = useState([]);
+  const [jausmaiAntra, setJausmaiAntra] = useState([]);
+  const [jausmaiKartu, setJausmaiKartu] = useState([]);
 
   const sides = {
     firstSide: "Pirma pusė",
@@ -33,6 +40,7 @@ export default function App() {
   };
 
   const getColor = () => {
+    // keiciasi priklausomai nuo puses pasirinkimo
     if (choice == sides.firstSide) {
       return "red";
     }
@@ -67,29 +75,55 @@ export default function App() {
 
       if (classOfJausmOrPoreik == "poreikiai") {
         // adding element and removing dublicates from array
-        if (poreikiai.indexOf(textContent) === -1) {
-          setPoreikiai((oldArray) => [...oldArray, textContent]);
-        } else {
-          console.log("This item already exists");
-        }
+
+          if (choice == sides.firstSide && poreikiaiPirma.indexOf(textContent) === -1) {
+            setPoreikiaiPirma((oldArray) => [...oldArray, textContent]);
+            setPoreikiaiAntra(poreikiaiAntra.filter((e) => e !== textContent));
+            setPoreikiaiKart(poreikiaiKartu.filter((e) => e !== textContent));
+          }
+          if (choice == sides.secondSide && poreikiaiAntra.indexOf(textContent) === -1) {
+            setPoreikiaiAntra((oldArray) => [...oldArray, textContent]);
+            setPoreikiaiPirma(poreikiaiPirma.filter((e) => e !== textContent));
+            setPoreikiaiKart(poreikiaiKartu.filter((e) => e !== textContent));
+          }
+          if (choice == sides.together && poreikiaiKartu.indexOf(textContent) === -1) {
+            setPoreikiaiKart((oldArray) => [...oldArray, textContent]);
+            setPoreikiaiPirma(poreikiaiPirma.filter((e) => e !== textContent));
+            setPoreikiaiAntra(poreikiaiAntra.filter((e) => e !== textContent));
+          }
       }
 
       if (classOfJausmOrPoreik == "jausmai") {
         // adding element and removing dublicates from array
-        if (jausmai.indexOf(textContent) === -1) {
-          setJausmai((oldArray) => [...oldArray, textContent]);
-        } else {
-          console.log("This item already exists");
+        if (choice == sides.firstSide && jausmaiPirma.indexOf(textContent) === -1) {
+          setJausmaiPirma((oldArray) => [...oldArray, textContent]);
+          setJausmaiAntra(jausmaiAntra.filter((e) => e !== textContent));
+          setJausmaiKartu(jausmaiKartu.filter((e) => e !== textContent));
         }
+        if (choice == sides.secondSide && jausmaiAntra.indexOf(textContent) === -1) {
+          setJausmaiAntra((oldArray) => [...oldArray, textContent]);
+          setJausmaiPirma(jausmaiPirma.filter((e) => e !== textContent));
+          setJausmaiKartu(jausmaiKartu.filter((e) => e !== textContent));
+        }
+        if (choice == sides.together && jausmaiKartu.indexOf(textContent) === -1) {
+          setJausmaiKartu((oldArray) => [...oldArray, textContent]);
+          setJausmaiPirma(jausmaiPirma.filter((e) => e !== textContent));
+          setJausmaiAntra(jausmaiAntra.filter((e) => e !== textContent));
+        }
+
       }
     } else {
       newColor = null;
       // remove element from list
       if (classOfJausmOrPoreik == "poreikiai") {
-        setPoreikiai(poreikiai.filter((e) => e !== textContent));
+        setPoreikiaiPirma(poreikiaiPirma.filter((e) => e !== textContent));
+        setPoreikiaiAntra(poreikiaiAntra.filter((e) => e !== textContent));
+        setPoreikiaiKart(poreikiaiKartu.filter((e) => e !== textContent));
       }
       if (classOfJausmOrPoreik == "jausmai") {
-        setJausmai(jausmai.filter((e) => e !== textContent));
+        setJausmaiPirma(jausmaiPirma.filter((e) => e !== textContent));
+        setJausmaiAntra(jausmaiAntra.filter((e) => e !== textContent));
+        setJausmaiKartu(jausmaiKartu.filter((e) => e !== textContent));
       }
     }
     e.target.style.color = newColor;
@@ -246,7 +280,8 @@ export default function App() {
                         <b>Stebėjimas</b>
                       </p>{" "}
                       <p>
-                      <i>kai matau / girdžiu</i></p>
+                        <i>kai matau / girdžiu</i>
+                      </p>
                       <Form>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                           <Form.Control as="textarea" rows={3} />
@@ -260,10 +295,18 @@ export default function App() {
                       <p>
                         <i>atrodo, kad jauti</i>
                       </p>
-                      {jausmai.map((element) => (
-                        <p class="text">{element}</p>
-                      ))}
-                                       <Form>
+                      {jausmaiKartu.map((element) => (
+                        <p class="text " style={ { color:  "green" } }  >{element}</p>
+                      ))}{" "}
+
+                      {jausmaiPirma.map((element) => (
+                        <p class="text " style={ { color:  "red" } }  >{element}</p>
+                      ))}{" "}
+
+                      {jausmaiAntra.map((element) => (
+                        <p class="text " style={ { color:  "blue" } }  >{element}</p>
+                      ))}{" "}
+                      <Form>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                           <Form.Control as="textarea" rows={3} />
                         </Form.Group>
@@ -276,13 +319,23 @@ export default function App() {
                       <p>
                         <i>nes yra noras?</i>
                       </p>
-                      {poreikiai.map((element) => (
-                        <p class="text">{element}</p>
-                      ))}                 <Form>
-                      <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Control as="textarea" rows={3} />
-                      </Form.Group>
-                    </Form>
+                      {poreikiaiKartu.map((element) => (
+                        <p class="text " style={ { color:  "green" } }  >{element}</p>
+                      ))}{" "}
+
+                      {poreikiaiPirma.map((element) => (
+                        <p class="text " style={ { color:  "red" } }  >{element}</p>
+                      ))}{" "}
+
+                      {poreikiaiAntra.map((element) => (
+                        <p class="text " style={ { color:  "blue" } }  >{element}</p>
+                      ))}{" "}
+                      
+                      <Form>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                          <Form.Control as="textarea" rows={3} />
+                        </Form.Group>
+                      </Form>
                     </Col>
                     <Col>Ar gerai tave suprantu?</Col>
                   </Row>
@@ -311,10 +364,10 @@ export default function App() {
                       <i>Pastebiu, kad:</i>
                     </p>
                     <Form>
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                          <Form.Control as="textarea" rows={3} />
-                        </Form.Group>
-                      </Form>
+                      <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Control as="textarea" rows={3} />
+                      </Form.Group>
+                    </Form>
                   </Col>
                   <Col>
                     <p>
@@ -324,10 +377,10 @@ export default function App() {
                       <i>Jaučiu:</i>
                     </p>
                     <Form>
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                          <Form.Control as="textarea" rows={3} />
-                        </Form.Group>
-                      </Form>
+                      <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Control as="textarea" rows={3} />
+                      </Form.Group>
+                    </Form>
                   </Col>
                   <Col>
                     <p>
@@ -337,10 +390,10 @@ export default function App() {
                       <i>Nes norisi:</i>
                     </p>
                     <Form>
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                          <Form.Control as="textarea" rows={3} />
-                        </Form.Group>
-                      </Form>
+                      <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Control as="textarea" rows={3} />
+                      </Form.Group>
+                    </Form>
                   </Col>
                   <Col>
                     <p>
@@ -350,10 +403,10 @@ export default function App() {
                       <i>Ar tau tiktų jeigu...?</i>
                     </p>
                     <Form>
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                          <Form.Control as="textarea" rows={3} />
-                        </Form.Group>
-                      </Form>
+                      <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Control as="textarea" rows={3} />
+                      </Form.Group>
+                    </Form>
                   </Col>
                 </Row>
               </Card.Body>
