@@ -19,16 +19,16 @@ export default function App() {
 
   const [choice, setChoice] = useState([]);
   const [spalva, setSpalva] = useState({ color: DEFAULT_COLOR });
+  const [cbox, setCbox] = useState(false);
+
   const [side1, setSide1] = useState("1 pusė");
   const [side2, setSide2] = useState("2 pusė");
   const [side3, setSide3] = useState("3 pusė");
 
-  const [poreikiai, setPoreikiai] = useState([]);
   const [poreikiaiPirma, setPoreikiaiPirma] = useState([]);
   const [poreikiaiAntra, setPoreikiaiAntra] = useState([]);
   const [poreikiaiKartu, setPoreikiaiKart] = useState([]);
 
-  const [jausmai, setJausmai] = useState([]);
   const [jausmaiPirma, setJausmaiPirma] = useState([]);
   const [jausmaiAntra, setJausmaiAntra] = useState([]);
   const [jausmaiKartu, setJausmaiKartu] = useState([]);
@@ -59,7 +59,7 @@ export default function App() {
     const classOfJausmOrPoreik =
       e.target.parentElement.parentElement.parentElement.parentElement
         .className;
-
+        e.target.parentElement.classList.add("pazymetas");
     console.log(
       `target color: ${targetColor} choice color: ${choiceColor}\tagName: ${tagName} text: ${textContent} class: ${classOfJausmOrPoreik}`
     );
@@ -76,42 +76,61 @@ export default function App() {
       if (classOfJausmOrPoreik == "poreikiai") {
         // adding element and removing dublicates from array
 
-          if (choice == sides.firstSide && poreikiaiPirma.indexOf(textContent) === -1) {
-            setPoreikiaiPirma((oldArray) => [...oldArray, textContent]);
-            setPoreikiaiAntra(poreikiaiAntra.filter((e) => e !== textContent));
-            setPoreikiaiKart(poreikiaiKartu.filter((e) => e !== textContent));
-          }
-          if (choice == sides.secondSide && poreikiaiAntra.indexOf(textContent) === -1) {
-            setPoreikiaiAntra((oldArray) => [...oldArray, textContent]);
-            setPoreikiaiPirma(poreikiaiPirma.filter((e) => e !== textContent));
-            setPoreikiaiKart(poreikiaiKartu.filter((e) => e !== textContent));
-          }
-          if (choice == sides.together && poreikiaiKartu.indexOf(textContent) === -1) {
-            setPoreikiaiKart((oldArray) => [...oldArray, textContent]);
-            setPoreikiaiPirma(poreikiaiPirma.filter((e) => e !== textContent));
-            setPoreikiaiAntra(poreikiaiAntra.filter((e) => e !== textContent));
-          }
+        if (
+          choice == sides.firstSide &&
+          poreikiaiPirma.indexOf(textContent) === -1
+        ) {
+          setPoreikiaiPirma((oldArray) => [...oldArray, textContent]);
+          setPoreikiaiAntra(poreikiaiAntra.filter((e) => e !== textContent));
+          setPoreikiaiKart(poreikiaiKartu.filter((e) => e !== textContent));
+
+        }
+        if (
+          choice == sides.secondSide &&
+          poreikiaiAntra.indexOf(textContent) === -1
+        ) {
+          setPoreikiaiAntra((oldArray) => [...oldArray, textContent]);
+          setPoreikiaiPirma(poreikiaiPirma.filter((e) => e !== textContent));
+          setPoreikiaiKart(poreikiaiKartu.filter((e) => e !== textContent));
+        }
+        if (
+          choice == sides.together &&
+          poreikiaiKartu.indexOf(textContent) === -1
+        ) {
+          setPoreikiaiKart((oldArray) => [...oldArray, textContent]);
+          setPoreikiaiPirma(poreikiaiPirma.filter((e) => e !== textContent));
+          setPoreikiaiAntra(poreikiaiAntra.filter((e) => e !== textContent));
+        }
       }
 
       if (classOfJausmOrPoreik == "jausmai") {
         // adding element and removing dublicates from array
-        if (choice == sides.firstSide && jausmaiPirma.indexOf(textContent) === -1) {
+        if (
+          choice == sides.firstSide &&
+          jausmaiPirma.indexOf(textContent) === -1
+        ) {
           setJausmaiPirma((oldArray) => [...oldArray, textContent]);
           setJausmaiAntra(jausmaiAntra.filter((e) => e !== textContent));
           setJausmaiKartu(jausmaiKartu.filter((e) => e !== textContent));
         }
-        if (choice == sides.secondSide && jausmaiAntra.indexOf(textContent) === -1) {
+        if (
+          choice == sides.secondSide &&
+          jausmaiAntra.indexOf(textContent) === -1
+        ) {
           setJausmaiAntra((oldArray) => [...oldArray, textContent]);
           setJausmaiPirma(jausmaiPirma.filter((e) => e !== textContent));
           setJausmaiKartu(jausmaiKartu.filter((e) => e !== textContent));
         }
-        if (choice == sides.together && jausmaiKartu.indexOf(textContent) === -1) {
+        if (
+          choice == sides.together &&
+          jausmaiKartu.indexOf(textContent) === -1
+        ) {
           setJausmaiKartu((oldArray) => [...oldArray, textContent]);
           setJausmaiPirma(jausmaiPirma.filter((e) => e !== textContent));
           setJausmaiAntra(jausmaiAntra.filter((e) => e !== textContent));
         }
-
       }
+      
     } else {
       newColor = null;
       // remove element from list
@@ -119,41 +138,58 @@ export default function App() {
         setPoreikiaiPirma(poreikiaiPirma.filter((e) => e !== textContent));
         setPoreikiaiAntra(poreikiaiAntra.filter((e) => e !== textContent));
         setPoreikiaiKart(poreikiaiKartu.filter((e) => e !== textContent));
+        e.target.parentElement.classList.remove("pazymetas");
+        
       }
       if (classOfJausmOrPoreik == "jausmai") {
         setJausmaiPirma(jausmaiPirma.filter((e) => e !== textContent));
         setJausmaiAntra(jausmaiAntra.filter((e) => e !== textContent));
         setJausmaiKartu(jausmaiKartu.filter((e) => e !== textContent));
+        e.target.parentElement.classList.remove("pazymetas");
       }
     }
     e.target.style.color = newColor;
+    
     console.log(targetColor);
     console.log(newColor);
+   
   };
 
+  const toggleElements = () => {
+    console.log("test");
+  };
   return (
     <Container fluid="false" style={{ backgroundColor: "whitesmoke" }}>
       <Alert variant="info">
         Pasirinkta: <b>{choice}</b>
-        <div class="puses">
+        <div className="puses">
           <div
-            class="pusesElementas"
+            className="pusesElementas"
             onClick={(e) => setChoice(sides.firstSide)}
           >
-            <div class="red column"></div>
+            <div className="red column"></div>
             <InlineEdit text={side1} onSetText={(text) => setSide1(text)} />
           </div>
           <div
-            class="pusesElementas"
+            className="pusesElementas"
             onClick={() => setChoice(sides.secondSide)}
           >
-            <div class="blue column"></div>
+            <div className="blue column"></div>
             <InlineEdit text={side2} onSetText={(text) => setSide2(text)} />
           </div>
-          <div class="pusesElementas" onClick={() => setChoice(sides.together)}>
-            <div class="green column"></div>
+          <div className="pusesElementas" onClick={() => setChoice(sides.together)}>
+            <div className="green column"></div>
             <InlineEdit text={side3} onSetText={(text) => setSide3(text)} />
           </div>
+          <Form.Check
+            type="checkbox"
+            checked={cbox}
+            label="Slėpti nepažymėtus"
+            onChange={() => {
+              setCbox(!cbox);
+              toggleElements();
+            }}
+          />
         </div>
       </Alert>
 
@@ -170,13 +206,13 @@ export default function App() {
               <div className="Column">
                 <Row>
                   {NEEDS_COMMON_ROL.map((s) => (
-                    <div class="poreikiai">
+                    <div className="poreikiai">
                       <h4>{s.title}</h4>
                       <div style={spalva} onClick={(e) => setColor(e)}>
-                        <ol>
+                        <ol >
                           {s.elements.map((poreikis) => (
                             <Col>
-                              <li key={poreikis}>{poreikis}</li>
+                              <li className={cbox ? 'hidden' : false } key={poreikis}>{poreikis}</li>
                             </Col>
                           ))}
                         </ol>
@@ -203,7 +239,7 @@ export default function App() {
               <div className="Column">
                 <Row>
                   {NEEDS_UNMET_ROL.map((s) => (
-                    <div class="jausmai">
+                    <div className="jausmai">
                       <h4>{s.title}</h4>
                       <div style={spalva} onClick={(e) => setColor(e)}>
                         <ol>
@@ -236,7 +272,7 @@ export default function App() {
               <div className="Column">
                 <Row>
                   {NEEDS_MET_ROL.map((s) => (
-                    <div class="jausmai">
+                    <div className="jausmai">
                       <h4>{s.title}</h4>
                       <div style={spalva} onClick={(e) => setColor(e)}>
                         <ol>
@@ -296,15 +332,19 @@ export default function App() {
                         <i>atrodo, kad jauti</i>
                       </p>
                       {jausmaiKartu.map((element) => (
-                        <p class="text " style={ { color:  "green" } }  >{element}</p>
+                        <p className="text " style={{ color: "green" }}>
+                          {element}
+                        </p>
                       ))}{" "}
-
                       {jausmaiPirma.map((element) => (
-                        <p class="text " style={ { color:  "red" } }  >{element}</p>
+                        <p className="text " style={{ color: "red" }}>
+                          {element}
+                        </p>
                       ))}{" "}
-
                       {jausmaiAntra.map((element) => (
-                        <p class="text " style={ { color:  "blue" } }  >{element}</p>
+                        <p className="text " style={{ color: "blue" }}>
+                          {element}
+                        </p>
                       ))}{" "}
                       <Form>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -320,17 +360,20 @@ export default function App() {
                         <i>nes yra noras?</i>
                       </p>
                       {poreikiaiKartu.map((element) => (
-                        <p class="text " style={ { color:  "green" } }  >{element}</p>
+                        <p className="text " style={{ color: "green" }}>
+                          {element}
+                        </p>
                       ))}{" "}
-
                       {poreikiaiPirma.map((element) => (
-                        <p class="text " style={ { color:  "red" } }  >{element}</p>
+                        <p className="text " style={{ color: "red" }}>
+                          {element}
+                        </p>
                       ))}{" "}
-
                       {poreikiaiAntra.map((element) => (
-                        <p class="text " style={ { color:  "blue" } }  >{element}</p>
+                        <p className="text " style={{ color: "blue" }}>
+                          {element}
+                        </p>
                       ))}{" "}
-                      
                       <Form>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                           <Form.Control as="textarea" rows={3} />

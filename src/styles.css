@@ -4,6 +4,13 @@
   max-width: 100%;
   color: #9b9b9b;
 }
+.hidden {
+  display: none;
+
+}
+ .pazymetas > li {
+  display: block !important;
+}
 .text    {
   color: blue;
 }
