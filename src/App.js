@@ -59,7 +59,7 @@ export default function App() {
     const classOfJausmOrPoreik =
       e.target.parentElement.parentElement.parentElement.parentElement
         .className;
-        e.target.parentElement.classList.add("pazymetas");
+    e.target.parentElement.classList.add("pazymetas");
     console.log(
       `target color: ${targetColor} choice color: ${choiceColor}\tagName: ${tagName} text: ${textContent} class: ${classOfJausmOrPoreik}`
     );
@@ -83,7 +83,6 @@ export default function App() {
           setPoreikiaiPirma((oldArray) => [...oldArray, textContent]);
           setPoreikiaiAntra(poreikiaiAntra.filter((e) => e !== textContent));
           setPoreikiaiKart(poreikiaiKartu.filter((e) => e !== textContent));
-
         }
         if (
           choice == sides.secondSide &&
@@ -130,7 +129,6 @@ export default function App() {
           setJausmaiAntra(jausmaiAntra.filter((e) => e !== textContent));
         }
       }
-      
     } else {
       newColor = null;
       // remove element from list
@@ -139,7 +137,6 @@ export default function App() {
         setPoreikiaiAntra(poreikiaiAntra.filter((e) => e !== textContent));
         setPoreikiaiKart(poreikiaiKartu.filter((e) => e !== textContent));
         e.target.parentElement.classList.remove("pazymetas");
-        
       }
       if (classOfJausmOrPoreik == "jausmai") {
         setJausmaiPirma(jausmaiPirma.filter((e) => e !== textContent));
@@ -149,10 +146,9 @@ export default function App() {
       }
     }
     e.target.style.color = newColor;
-    
+
     console.log(targetColor);
     console.log(newColor);
-   
   };
 
   const toggleElements = () => {
@@ -161,24 +157,35 @@ export default function App() {
   return (
     <Container fluid="false" style={{ backgroundColor: "whitesmoke" }}>
       <Alert variant="info">
-        Pasirinkta: <b>{choice}</b>
         <div className="puses">
           <div
             className="pusesElementas"
             onClick={(e) => setChoice(sides.firstSide)}
           >
-            <div className="red column"></div>
+            <div 
+            className={`colorSelect red column ${choice === sides.firstSide && "pasirinktaPuse"} `}
+            >
+            </div>
+
             <InlineEdit text={side1} onSetText={(text) => setSide1(text)} />
           </div>
           <div
             className="pusesElementas"
             onClick={() => setChoice(sides.secondSide)}
           >
-            <div className="blue column"></div>
+            <div 
+            className={`colorSelect blue column ${choice === sides.secondSide && "pasirinktaPuse"} `}
+            ></div>
             <InlineEdit text={side2} onSetText={(text) => setSide2(text)} />
           </div>
-          <div className="pusesElementas" onClick={() => setChoice(sides.together)}>
-            <div className="green column"></div>
+          <div
+            className="pusesElementas"
+            onClick={() => setChoice(sides.together)}
+          >
+            <div 
+            className={`colorSelect green column ${choice === sides.together && "pasirinktaPuse"} `}
+            >
+            </div>
             <InlineEdit text={side3} onSetText={(text) => setSide3(text)} />
           </div>
           <Form.Check
@@ -209,10 +216,15 @@ export default function App() {
                     <div className="poreikiai">
                       <h4>{s.title}</h4>
                       <div style={spalva} onClick={(e) => setColor(e)}>
-                        <ol >
+                        <ol>
                           {s.elements.map((poreikis) => (
                             <Col>
-                              <li className={cbox ? 'hidden' : false } key={poreikis}>{poreikis}</li>
+                              <li
+                                className={cbox ? "hidden" : false}
+                                key={poreikis}
+                              >
+                                {poreikis}
+                              </li>
                             </Col>
                           ))}
                         </ol>
