@@ -341,23 +341,26 @@ export default function App() {
                         <b>Jausmai</b>
                       </p>{" "}
                       <p>
-                        <i>atrodo, kad jauti</i>
+                        <i>atrodo, kad jautiesi</i>
                       </p>
-                      {jausmaiKartu.map((element) => (
-                        <p className="text " style={{ color: "green" }}>
-                          {element}
-                        </p>
-                      ))}{" "}
-                      {jausmaiPirma.map((element) => (
-                        <p className="text " style={{ color: "red" }}>
-                          {element}
-                        </p>
-                      ))}{" "}
                       {jausmaiAntra.map((element) => (
                         <p className="text " style={{ color: "blue" }}>
                           {element}
                         </p>
                       ))}{" "}
+
+                      {jausmaiKartu.map((element) => (
+                        <p className="text " style={{ color: "green" }}>
+                          {element}
+                        </p>
+                      ))}{" "}
+
+                      {/* {jausmaiPirma.map((element) => (
+                        <p className="text " style={{ color: "red" }}>
+                          {element}
+                        </p>
+                      ))}{" "} */}
+
                       <Form>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                           <Form.Control as="textarea" rows={3} />
@@ -371,21 +374,21 @@ export default function App() {
                       <p>
                         <i>nes yra noras?</i>
                       </p>
-                      {poreikiaiKartu.map((element) => (
-                        <p className="text " style={{ color: "green" }}>
-                          {element}
-                        </p>
-                      ))}{" "}
-                      {poreikiaiPirma.map((element) => (
-                        <p className="text " style={{ color: "red" }}>
-                          {element}
-                        </p>
-                      ))}{" "}
                       {poreikiaiAntra.map((element) => (
                         <p className="text " style={{ color: "blue" }}>
                           {element}
                         </p>
                       ))}{" "}
+                      {poreikiaiKartu.map((element) => (
+                        <p className="text " style={{ color: "green" }}>
+                          {element}
+                        </p>
+                      ))}{" "}
+                      {/* {poreikiaiPirma.map((element) => (
+                        <p className="text " style={{ color: "red" }}>
+                          {element}
+                        </p>
+                      ))}{" "} */}
                       <Form>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                           <Form.Control as="textarea" rows={3} />
@@ -430,23 +433,24 @@ export default function App() {
                     </p>{" "}
     
                       <p>
-                        <i>Jaučiu:</i>
+                        <i>Jaučiuosi:</i>
                       </p>
-                      {jausmaiKartu.map((element) => (
-                        <p className="text " style={{ color: "green" }}>
-                          {element}
-                        </p>
-                      ))}{" "}
                       {jausmaiPirma.map((element) => (
                         <p className="text " style={{ color: "red" }}>
                           {element}
                         </p>
                       ))}{" "}
-                      {jausmaiAntra.map((element) => (
-                        <p className="text " style={{ color: "blue" }}>
+                      {jausmaiKartu.map((element) => (
+                        <p className="text " style={{ color: "green" }}>
                           {element}
                         </p>
                       ))}{" "}
+
+                      {/* {jausmaiAntra.map((element) => (
+                        <p className="text " style={{ color: "blue" }}>
+                          {element}
+                        </p>
+                      ))}{" "} */}
                     <Form>
                       <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Control as="textarea" rows={3} />
@@ -460,6 +464,23 @@ export default function App() {
                     <p>
                       <i>Nes norisi:</i>
                     </p>
+                      {poreikiaiPirma.map((element) => (
+                        <p className="text " style={{ color: "red" }}>
+                          {element}
+                        </p>
+                      ))}{" "}
+
+                      {poreikiaiKartu.map((element) => (
+                        <p className="text " style={{ color: "green" }}>
+                          {element}
+                        </p>
+                      ))}{" "}
+                      {/* {poreikiaiAntra.map((element) => (
+                        <p className="text " style={{ color: "blue" }}>
+                          {element}
+                        </p>
+                      ))}{" "} */}
+                    
                     <Form>
                       <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Control as="textarea" rows={3} />
