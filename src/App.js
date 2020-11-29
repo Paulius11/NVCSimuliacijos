@@ -428,9 +428,25 @@ export default function App() {
                     <p>
                       <b>Jausmai</b>
                     </p>{" "}
-                    <p>
-                      <i>Jaučiu:</i>
-                    </p>
+    
+                      <p>
+                        <i>Jaučiu:</i>
+                      </p>
+                      {jausmaiKartu.map((element) => (
+                        <p className="text " style={{ color: "green" }}>
+                          {element}
+                        </p>
+                      ))}{" "}
+                      {jausmaiPirma.map((element) => (
+                        <p className="text " style={{ color: "red" }}>
+                          {element}
+                        </p>
+                      ))}{" "}
+                      {jausmaiAntra.map((element) => (
+                        <p className="text " style={{ color: "blue" }}>
+                          {element}
+                        </p>
+                      ))}{" "}
                     <Form>
                       <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Control as="textarea" rows={3} />
