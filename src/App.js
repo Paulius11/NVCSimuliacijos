@@ -23,7 +23,7 @@ export default function App() {
 
   const [side1, setSide1] = useState("1 pusė");
   const [side2, setSide2] = useState("2 pusė");
-  const [side3, setSide3] = useState("3 pusė");
+  const [side3, setSide3] = useState("Drauge");
 
   const [poreikiaiPirma, setPoreikiaiPirma] = useState([]);
   const [poreikiaiAntra, setPoreikiaiAntra] = useState([]);
