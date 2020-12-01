@@ -1,3 +1,7 @@
+/* Sumažina tarpus tarp skaiciu ir parastes */
+ol {
+  padding-left: 11px;
+}
 div .pasirinktaPuse {
   border: 4px  white;
   opacity: 1.0;
@@ -12,6 +16,7 @@ div .pasirinktaPuse {
   flex-grow: 1;
   max-width: 100%;
   color: #9b9b9b;
+
 }
 .hidden {
   display: none;
