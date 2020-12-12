@@ -1,15 +1,15 @@
 // Pagal Rolando http://empatijosbendruomene.lt/
 
 export const NEEDS_COMMON_ROL= [
-  { title: 'Ryšys', elements: ['Priėmimas','Pagarba', 'Dalijimasis', 'Įsitraukimas', 'Pritarimas', 'Švelnumas', 'Įvertinimas', 'Priklausymas', 'Bendrumas', 'Rūpinimasis', 'Atidumas', 'Globa', 'Artumas', 'Komunikacija', 'Bendravimas', 'Bendruomenė', 'Draugija', 'Draugystė', 'Atjauta', 'Užuojauta', 'Dėmesys', 'Empatija', 'Įkvėpimas', 'Vientisumas', 'Intymumas', 'Meilė', "Partnerystė",  ]  },
+  { title: 'Ryšys', elements: ['Ryšys', 'Priėmimas','Pagarba', 'Dalijimasis', 'Įsitraukimas', 'Pritarimas', 'Švelnumas', 'Įvertinimas', 'Priklausymas', 'Bendrumas', 'Rūpinimasis', 'Atidumas', 'Globa', 'Artumas', 'Komunikacija', 'Bendravimas', 'Bendruomenė', 'Draugija', 'Draugystė', 'Atjauta', 'Užuojauta', 'Dėmesys', 'Empatija', 'Įkvėpimas', 'Vientisumas', 'Intymumas', 'Meilė', "Partnerystė",  ]  },
   { title: 'Ryšys ', elements: ['Buvimas kartu',  'Savigarba', 'Savęs priėmimas', 'Rūpinimasis savimi', 'Ryšys su savimi', 'Savęs išreiškimas', 'Girdėti ir būti išgirstu', 'Bendra tikrovė', 'Dalinimasis tikrove', 'Stabilumas', 'Palaikymas', 'Pažinti', 'Būti pažintam', 'Pastebėti', 'Būti pastebėtam', 'Pasitikėjimas', 'Supratimas' ]  },
 
-  { title: 'Prasmė', elements: ['Sąmoningumas', 'Šventimas', 'Iššūkis', 'Kūrybiškumas', 'Aiškumas', 'Skaidrumas', 'Sugebėjimas', 'Savimonė', 'Prisidėjimas', 'Atradimas', 'Naudingumas', 'Veiksmingumas', 'Produktyvumas', 'Pasisekimas', 'Augimas', 'Mokymasis', 'Gedėjimas', 'Veiksmas', 'Dalyvavimas', 'Požiūris', 'Perspektyva', 'Galimybė', 'Pažanga', 'Progresas', 'Tikslas', 'Stimulas', 'Tikėjimas' ]  },
-  { title: 'Taika', elements: ['Ramybė', 'Pusiausvyra', 'Balansas', 'Pakankamumas', 'Grožis', 'Bendrystė', 'Lengvumas', 'Sklandumas', 'Darna', 'Viltis', 'Tvarka', 'Nuoseklumas' ]  },
-  { title: 'Autentiškumas', elements: ['Sąžiningumas', 'Principingumas', 'Buvimas' ]  },
-  { title: 'Fizinė Gerovė', elements: ['Oras', 'Vanduo', 'Komfortas', 'Maistas', 'Judėjimas', 'Poilsis', 'Saugumas', 'Seksualumo išraiška', 'Pastogė', 'Prisilietimas' ]  },
-  { title: 'Autonomija', elements: ['Laisvė', 'Pasirinkimas', 'Orumas', 'Nepriklausomybė', 'Saviraiška', 'Erdvė', 'Spontaniškumas' ]  },
-  { title: 'Žaidimas', elements: ['Nuotykis', 'Susijaudinimas', 'Entuziazmas', 'Linksmumas', 'Smagumas', 'Humoras', 'Džiaugsmas', 'Atsipalaidavimas', 'Stimuliavimas' ]  },
+  { title: 'Prasmė', elements: ['Prasmė', 'Sąmoningumas', 'Šventimas', 'Iššūkis', 'Kūrybiškumas', 'Aiškumas', 'Skaidrumas', 'Sugebėjimas', 'Savimonė', 'Prisidėjimas', 'Atradimas', 'Naudingumas', 'Veiksmingumas', 'Produktyvumas', 'Pasisekimas', 'Augimas', 'Mokymasis', 'Gedėjimas', 'Veiksmas', 'Dalyvavimas', 'Požiūris', 'Perspektyva', 'Galimybė', 'Pažanga', 'Progresas', 'Tikslas', 'Stimulas', 'Tikėjimas' ]  },
+  { title: 'Taika', elements: ['Taika', 'Ramybė', 'Pusiausvyra', 'Balansas', 'Pakankamumas', 'Grožis', 'Bendrystė', 'Lengvumas', 'Sklandumas', 'Darna', 'Viltis', 'Tvarka', 'Nuoseklumas' ]  },
+  { title: 'Autentiškumas', elements: ['Autentiškumas','Sąžiningumas', 'Principingumas', 'Buvimas' ]  },
+  { title: 'Fizinė Gerovė', elements: ['Fizinė Gerovė' ,'Oras', 'Vanduo', 'Komfortas', 'Maistas', 'Judėjimas', 'Poilsis', 'Saugumas', 'Seksualumo išraiška', 'Pastogė', 'Prisilietimas' ]  },
+  { title: 'Autonomija', elements: ['Autonomija', 'Laisvė', 'Pasirinkimas', 'Orumas', 'Nepriklausomybė', 'Saviraiška', 'Erdvė', 'Spontaniškumas' ]  },
+  { title: 'Žaidimas', elements: ['Žaidimas', 'Nuotykis', 'Susijaudinimas', 'Entuziazmas', 'Linksmumas', 'Smagumas', 'Humoras', 'Džiaugsmas', 'Atsipalaidavimas', 'Stimuliavimas' ]  },
 ];
 
 
