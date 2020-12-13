@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./styles.css";
 import InlineEdit from "./components/inlineEdit";
 import { NEEDS_COMMON_ROL, NEEDS_UNMET_ROL, NEEDS_MET_ROL } from "./data/data";
-
+import FontSizeChanger from "react-font-size-changer";
 import {
   Accordion,
   Card,
@@ -162,10 +162,11 @@ export default function App() {
             className="pusesElementas"
             onClick={(e) => setChoice(sides.firstSide)}
           >
-            <div 
-            className={`colorSelect red column ${choice === sides.firstSide && "pasirinktaPuse"} `}
-            >
-            </div>
+            <div
+              className={`colorSelect red column ${
+                choice === sides.firstSide && "pasirinktaPuse"
+              } `}
+            ></div>
 
             <InlineEdit text={side1} onSetText={(text) => setSide1(text)} />
           </div>
@@ -173,8 +174,10 @@ export default function App() {
             className="pusesElementas"
             onClick={() => setChoice(sides.secondSide)}
           >
-            <div 
-            className={`colorSelect blue column ${choice === sides.secondSide && "pasirinktaPuse"} `}
+            <div
+              className={`colorSelect blue column ${
+                choice === sides.secondSide && "pasirinktaPuse"
+              } `}
             ></div>
             <InlineEdit text={side2} onSetText={(text) => setSide2(text)} />
           </div>
@@ -182,10 +185,11 @@ export default function App() {
             className="pusesElementas"
             onClick={() => setChoice(sides.together)}
           >
-            <div 
-            className={`colorSelect green column ${choice === sides.together && "pasirinktaPuse"} `}
-            >
-            </div>
+            <div
+              className={`colorSelect green column ${
+                choice === sides.together && "pasirinktaPuse"
+              } `}
+            ></div>
             <InlineEdit text={side3} onSetText={(text) => setSide3(text)} />
           </div>
           <Form.Check
@@ -195,6 +199,19 @@ export default function App() {
             onChange={() => {
               setCbox(!cbox);
               toggleElements();
+            }}
+          />
+        </div>
+        <div className={"changeTextSize"}>
+          {" "}
+          <FontSizeChanger
+            targets={[".Column li"]}
+            onChange={(element, newValue, oldValue) => {
+              console.log(element, newValue, oldValue);
+            }}
+            options={{
+              stepSize: 1,
+              range: 5,
             }}
           />
         </div>
@@ -208,30 +225,28 @@ export default function App() {
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey="0">
-            <Card.Body>
+            <Card.Body className="suspaustasIsdestimas">
               {" "}
               <div className="Column">
-                <Row>
-                  {NEEDS_COMMON_ROL.map((s) => (
-                    <div className="poreikiai">
-                      <h4>{s.title}</h4>
-                      <div style={spalva} onClick={(e) => setColor(e)}>
-                        <ol>
-                          {s.elements.map((poreikis) => (
-                            <Col>
-                              <li
-                                className={cbox ? "hidden" : false}
-                                key={poreikis}
-                              >
-                                {poreikis}
-                              </li>
-                            </Col>
-                          ))}
-                        </ol>
-                      </div>
+                {NEEDS_COMMON_ROL.map((s) => (
+                  <div className="poreikiai">
+                    <h4>{s.title}</h4>
+                    <div style={spalva} onClick={(e) => setColor(e)}>
+                      <ol>
+                        {s.elements.map((poreikis) => (
+                          <Col>
+                            <li
+                              className={cbox ? "hidden" : false}
+                              key={poreikis}
+                            >
+                              {poreikis}
+                            </li>
+                          </Col>
+                        ))}
+                      </ol>
                     </div>
-                  ))}
-                </Row>
+                  </div>
+                ))}
               </div>
             </Card.Body>
           </Accordion.Collapse>
@@ -348,19 +363,16 @@ export default function App() {
                           {element}
                         </p>
                       ))}{" "}
-
                       {jausmaiKartu.map((element) => (
                         <p className="text " style={{ color: "green" }}>
                           {element}
                         </p>
                       ))}{" "}
-
                       {/* {jausmaiPirma.map((element) => (
                         <p className="text " style={{ color: "red" }}>
                           {element}
                         </p>
                       ))}{" "} */}
-
                       <Form>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                           <Form.Control as="textarea" rows={3} />
@@ -431,22 +443,20 @@ export default function App() {
                     <p>
                       <b>Jausmai</b>
                     </p>{" "}
-    
-                      <p>
-                        <i>Jaučiuosi:</i>
+                    <p>
+                      <i>Jaučiuosi:</i>
+                    </p>
+                    {jausmaiPirma.map((element) => (
+                      <p className="text " style={{ color: "red" }}>
+                        {element}
                       </p>
-                      {jausmaiPirma.map((element) => (
-                        <p className="text " style={{ color: "red" }}>
-                          {element}
-                        </p>
-                      ))}{" "}
-                      {jausmaiKartu.map((element) => (
-                        <p className="text " style={{ color: "green" }}>
-                          {element}
-                        </p>
-                      ))}{" "}
-
-                      {/* {jausmaiAntra.map((element) => (
+                    ))}{" "}
+                    {jausmaiKartu.map((element) => (
+                      <p className="text " style={{ color: "green" }}>
+                        {element}
+                      </p>
+                    ))}{" "}
+                    {/* {jausmaiAntra.map((element) => (
                         <p className="text " style={{ color: "blue" }}>
                           {element}
                         </p>
@@ -464,23 +474,21 @@ export default function App() {
                     <p>
                       <i>Nes norisi:</i>
                     </p>
-                      {poreikiaiPirma.map((element) => (
-                        <p className="text " style={{ color: "red" }}>
-                          {element}
-                        </p>
-                      ))}{" "}
-
-                      {poreikiaiKartu.map((element) => (
-                        <p className="text " style={{ color: "green" }}>
-                          {element}
-                        </p>
-                      ))}{" "}
-                      {/* {poreikiaiAntra.map((element) => (
+                    {poreikiaiPirma.map((element) => (
+                      <p className="text " style={{ color: "red" }}>
+                        {element}
+                      </p>
+                    ))}{" "}
+                    {poreikiaiKartu.map((element) => (
+                      <p className="text " style={{ color: "green" }}>
+                        {element}
+                      </p>
+                    ))}{" "}
+                    {/* {poreikiaiAntra.map((element) => (
                         <p className="text " style={{ color: "blue" }}>
                           {element}
                         </p>
                       ))}{" "} */}
-                    
                     <Form>
                       <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Control as="textarea" rows={3} />

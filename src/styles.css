@@ -1,6 +1,34 @@
+@media (min-width: 1200px) {
+	.suspaustasIsdestimas {
+		column-count: 5;
+	}
+}
+@media (min-width: 600px) and (max-width: 1200px) {
+	.suspaustasIsdestimas {
+		column-count: 4;
+
+	}
+}
+@media (max-width: 600px) {
+	.suspaustasIsdestimas {
+		column-count: 2;
+	}
+}
+
+.changeTextSize{
+  float: right !important;
+}
+
+.poreikiai {
+  /* background-color: #fdf; */
+}
+
 /* Sumažina tarpus tarp skaiciu ir parastes */
 ol {
   padding-left: 11px;
+ /* line-height: 0.7; */
+
+
 }
 div .pasirinktaPuse {
   border: 4px  white;
@@ -38,6 +66,7 @@ div .pasirinktaPuse {
 
 .column {
   padding: 22px;
+
 }
 .red {
   background-color: red;
