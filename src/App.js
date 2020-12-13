@@ -192,28 +192,27 @@ export default function App() {
             ></div>
             <InlineEdit text={side3} onSetText={(text) => setSide3(text)} />
           </div>
-          <Form.Check
-            type="checkbox"
-            checked={cbox}
-            label="Slėpti nepažymėtus"
-            onChange={() => {
-              setCbox(!cbox);
-              toggleElements();
-            }}
-          />
-        </div>
-        <div className={"changeTextSize"}>
-          {" "}
-          <FontSizeChanger
-            targets={[".Column li"]}
-            onChange={(element, newValue, oldValue) => {
-              console.log(element, newValue, oldValue);
-            }}
-            options={{
-              stepSize: 1,
-              range: 5,
-            }}
-          />
+          <div className={"options"}>
+            <Form.Check
+              type="checkbox"
+              checked={cbox}
+              label="Slėpti nepažymėtus"
+              onChange={() => {
+                setCbox(!cbox);
+                toggleElements();
+              }}
+            />{" "}
+            <FontSizeChanger
+              targets={[".Column li"]}
+              onChange={(element, newValue, oldValue) => {
+                console.log(element, newValue, oldValue);
+              }}
+              options={{
+                stepSize: 1,
+                range: 5,
+              }}
+            />
+          </div>
         </div>
       </Alert>
 
