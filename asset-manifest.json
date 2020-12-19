@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/NVCSimuliacijos/static/css/main.b539e9f6.chunk.css",
-    "main.js": "/NVCSimuliacijos/static/js/main.6dcc068c.chunk.js",
-    "main.js.map": "/NVCSimuliacijos/static/js/main.6dcc068c.chunk.js.map",
+    "main.css": "/NVCSimuliacijos/static/css/main.ad6886c1.chunk.css",
+    "main.js": "/NVCSimuliacijos/static/js/main.91448bba.chunk.js",
+    "main.js.map": "/NVCSimuliacijos/static/js/main.91448bba.chunk.js.map",
     "runtime-main.js": "/NVCSimuliacijos/static/js/runtime-main.6c585eba.js",
     "runtime-main.js.map": "/NVCSimuliacijos/static/js/runtime-main.6c585eba.js.map",
     "static/css/2.6a4fca40.chunk.css": "/NVCSimuliacijos/static/css/2.6a4fca40.chunk.css",
-    "static/js/2.d395ce52.chunk.js": "/NVCSimuliacijos/static/js/2.d395ce52.chunk.js",
-    "static/js/2.d395ce52.chunk.js.map": "/NVCSimuliacijos/static/js/2.d395ce52.chunk.js.map",
+    "static/js/2.cd42333b.chunk.js": "/NVCSimuliacijos/static/js/2.cd42333b.chunk.js",
+    "static/js/2.cd42333b.chunk.js.map": "/NVCSimuliacijos/static/js/2.cd42333b.chunk.js.map",
     "index.html": "/NVCSimuliacijos/index.html",
     "static/css/2.6a4fca40.chunk.css.map": "/NVCSimuliacijos/static/css/2.6a4fca40.chunk.css.map",
-    "static/css/main.b539e9f6.chunk.css.map": "/NVCSimuliacijos/static/css/main.b539e9f6.chunk.css.map",
-    "static/js/2.d395ce52.chunk.js.LICENSE.txt": "/NVCSimuliacijos/static/js/2.d395ce52.chunk.js.LICENSE.txt"
+    "static/css/main.ad6886c1.chunk.css.map": "/NVCSimuliacijos/static/css/main.ad6886c1.chunk.css.map",
+    "static/js/2.cd42333b.chunk.js.LICENSE.txt": "/NVCSimuliacijos/static/js/2.cd42333b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.6c585eba.js",
     "static/css/2.6a4fca40.chunk.css",
-    "static/js/2.d395ce52.chunk.js",
-    "static/css/main.b539e9f6.chunk.css",
-    "static/js/main.6dcc068c.chunk.js"
+    "static/js/2.cd42333b.chunk.js",
+    "static/css/main.ad6886c1.chunk.css",
+    "static/js/main.91448bba.chunk.js"
   ]
 }
