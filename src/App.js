@@ -21,6 +21,7 @@ export default function App() {
   const [choice, setChoice] = useState([]);
   const [spalva, setSpalva] = useState({ color: DEFAULT_COLOR });
   const [cbox, setCbox] = useState(false);
+  const [stickyCbox, setStickyCbox] = useState(false);
 
   const [side1, setSide1] = useState("1 pusė");
   const [side2, setSide2] = useState("2 pusė");
@@ -155,9 +156,8 @@ export default function App() {
   return (
     <Container fluid="false" style={{ backgroundColor: "whitesmoke" }}>
         <Navbar
-          expand="lg"
-          variant="light"
-          bg="light"
+         bg="light" variant="light"  sticky={stickyCbox ? "top" : ""}
+
         >
           <div className="puses">
             <div
@@ -201,10 +201,20 @@ export default function App() {
                 label="Slėpti nepažymėtus"
                 onChange={() => {
                   setCbox(!cbox);
-
                 }}
               />{" "}
-              <FontSizeChanger
+
+                <Form.Check
+                type="checkbox"
+                checked={stickyCbox}
+                label="Priklijuoti"
+                onChange={() => {
+                  setStickyCbox(!stickyCbox);
+                }}
+              />{" "} 
+            </div>
+          </div>
+          <FontSizeChanger
                 targets={[".Column li"]}
                 onChange={(element, newValue, oldValue) => {
                   console.log(element, newValue, oldValue);
@@ -214,8 +224,6 @@ export default function App() {
                   range: 5,
                 }}
               />
-            </div>
-          </div>
         </Navbar>
       <Accordion defaultActiveKey="0">
         <Card>
@@ -325,10 +333,10 @@ export default function App() {
       </Accordion>
       <hr />
 
-      <p>
+      <div >
         Konstruktyvus konflikto deeskalavimas atsižvelgiant į abiejų pusių
         poreikius ir jausmus.
-      </p>
+      </div>
 
       <Accordion defaultActiveKey="0">
         <div className="text">
