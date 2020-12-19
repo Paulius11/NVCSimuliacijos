@@ -1,3 +1,4 @@
+
 @media (min-width: 1200px) {
 	.suspaustasIsdestimas {
 		column-count: 5;
@@ -78,9 +79,16 @@ div .pasirinktaPuse {
 }
 
 
+nav {
+  z-index: 1; /*Add this*/
+}
 .puses {
   display: inline-flex;
   margin: 15px;
+  position: -webkit-sticky;
+position: sticky;
+top: 20px;
+
 } 
 
 .pusesElementas {
