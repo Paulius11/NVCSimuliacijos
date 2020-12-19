@@ -385,11 +385,11 @@ export default function App() {
                           {element}
                         </p>
                       ))}{" "} */}
-                    <Form>
+                    {/* <Form>
                       <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Control as="textarea" rows={3} />
                       </Form.Group>
-                    </Form>
+                    </Form> */}
                   </Col>
                   <Col>
                     <p>
@@ -413,11 +413,11 @@ export default function App() {
                           {element}
                         </p>
                       ))}{" "} */}
-                    <Form>
+                    {/* <Form>
                       <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Control as="textarea" rows={3} />
                       </Form.Group>
-                    </Form>
+                    </Form> */}
                   </Col>
                   <Col>Ar gerai tave suprantu?</Col>
                 </Row>
@@ -473,11 +473,11 @@ export default function App() {
                           {element}
                         </p>
                       ))}{" "} */}
-                  <Form>
+                  {/* <Form>
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                       <Form.Control as="textarea" rows={3} />
                     </Form.Group>
-                  </Form>
+                  </Form> */}
                 </Col>
                 <Col>
                   <p>
@@ -501,24 +501,24 @@ export default function App() {
                           {element}
                         </p>
                       ))}{" "} */}
-                  <Form>
+                  {/* <Form>
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                       <Form.Control as="textarea" rows={3} />
                     </Form.Group>
-                  </Form>
+                  </Form> */}
                 </Col>
                 <Col>
                   <p>
-                    <b>Prašumas</b>
+                    <b>Prašymas</b>
                   </p>{" "}
                   <p>
                     <i>Ar tau tiktų jeigu...?</i>
                   </p>
-                  <Form>
+                  {/* <Form>
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                       <Form.Control as="textarea" rows={3} />
                     </Form.Group>
-                  </Form>
+                  </Form> */}
                 </Col>
               </Row>
             </Card.Body>
