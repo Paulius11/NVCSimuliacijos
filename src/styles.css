@@ -1,4 +1,6 @@
-
+.color-nav {
+  background-color: #d1ecf1 !important;
+}
 @media (min-width: 1200px) {
 	.suspaustasIsdestimas {
 		column-count: 5;

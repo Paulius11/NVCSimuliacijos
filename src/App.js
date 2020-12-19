@@ -156,6 +156,7 @@ export default function App() {
   return (
     <Container fluid="false" style={{ backgroundColor: "whitesmoke" }}>
         <Navbar
+        className="color-nav"
          bg="light" variant="light"  sticky={stickyCbox ? "top" : ""}
 
         >
@@ -332,11 +333,13 @@ export default function App() {
         </Card>
       </Accordion>
       <hr />
+      <Container>
 
-      <div >
+
+      <p >
         Konstruktyvus konflikto deeskalavimas atsižvelgiant į abiejų pusių
         poreikius ir jausmus.
-      </div>
+      </p>
 
       <Accordion defaultActiveKey="0">
         <div className="text">
@@ -525,7 +528,7 @@ export default function App() {
           </Accordion.Collapse>
         </Card>
       </Accordion>
-
+      </Container>
 
     </Container>
   );
