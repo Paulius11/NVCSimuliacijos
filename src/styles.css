@@ -53,9 +53,9 @@ div .pasirinktaPuse {
 
 }
  .pazymetas > li {
-  display: block !important;
+  display:  list-item !important;
 }
-.text    {
+.text   / {
   color: blue;
 }
 
