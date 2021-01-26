@@ -170,3 +170,9 @@ body {
   color: rgba(172, 123, 123, 0.918);
   background-color: rgba(131, 85, 85, 0.025);
 }
+
+.footer{
+  margin: 1em;
+  text-align: center;
+
+}
