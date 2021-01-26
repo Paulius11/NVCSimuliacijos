@@ -84,5 +84,39 @@ export const NEEDS_COMMON_IEVA = [
   ];
 
 
+// Manto pakeitimai
 
+export const NEEDS_UNMET_MANTAS = [
+    { needs:"unmet", title: 'Baimę', elements: ['Gėdą','Susirūpinimą','Pasipriešinimą','Nerimą','Stresą','Baimę', 'Išgąstį', 'Siaubą', 'Paniką']  },
+    { needs:"unmet", title: 'Pyktį', elements: ['Pavydą','Nekantrumą', 'Susierzinimą',  'Frustraciją', 'Priešiškumą', 'Kerštingumą', 'Įsiutį', 'Pagiežą' ]  },
+    { needs:"unmet", title: 'Liūdesį', elements: ['Kaltę','Bėjėgiškumą', 'Vienišumą','Nusivylimą', 'Apmaudą', 'Ilgesį', 'Nusivilimą', 'Sielvartą', 'Širdgėlą' ]  },
+    { needs:"unmet", title: 'Pasimetimą', elements: ['Abejonę', 'Pasimetimą', 'Desperaciją',  'Sukrėtimą', 'Šoką', 'Susijaudinimą', 'Nerimastingujmą' ]  },
+    { needs:"unmet", title: 'Pasyvumą', elements: [ 'Nuobodulį', 'Apatiją', 'Nuovargį', 'Išsekimą' ]  },
+    { needs:"unmet", title: 'Pasišlykštėjimą', elements: ['Nemėgimą', 'Antipatiją', 'Panieką','Pasibjaurėjimas','Šleikštulį' ]  },
+];
 
+export const NEEDS_COMMON_MANTAS = [
+    { title: 'Fizinės gerovės', elements: ['Oro', 'Vandens', 'Komforto', 'Maisto', 'Judėjimo', 'Poilsio', 'Seksualumo išraiškos', 'Pastogės', 'Prisilietimo' ]  },
+    { title: 'Saugumo', elements: ['Saugumo(emocinio)', 'Pasitikėjimo', 'Stabilumo', 'Garantijų','Tvarkos/Struktūros','Nuoseklumo' ]  },
+    { title: 'Atvirumo', elements: ['Atvirumo', 'Autentiškumo', 'Skaidrumo', 'Tikrumo']  },
+    { title: 'Laisvės', elements: ['Autonomijos', 'Pasirinkimo', 'Nepriklausomybės', 'Saviraiškos','Erdvės']  },
+    { title: 'Atsipalaidavimo', elements: ['Žaismingumo', 'Nuotykių', 'Susijaudinimo', 'Entuziazmo', 'Linksmumo', 'Smagumo', 'Humoro', 'Džiaugsmo', 'Atsipalaidavimo', 'Stimuliavimo','Įvairovės','Sporntaniškumo' ]  },
+    { title: 'Ryšio', elements: ['Ryšio', 'Priėmimo','Pagarbos', 'Dalijimosi', 'Įsitraukimo', 'Pritarimo', 'Švelnumo', 'Įvertinimo', 'Priklausymo', 'Bendrumo', 'Rūpinimosi', 'Atidumo', 'Globos', 'Artumo', 'Komunikacijos', 'Bendravimo', 'Bendruomeninkšumo', 'Draugijos', 'Draugystės', 'Atjautos', 'Užuojautos', 'Dėmesio', 'Empatijos', 'Įkvėpimo', 'Vientisumo', 'Intymumo', 'Meilės', "Partnerystės",'Buvimo kartu',  'Savigarbos', 'Savęs priėmimo', 'Ryšio su savimi', 'Savęs išreiškimo', 'Girdėti ir būti išgirstu',  'Stabilumo', 'Palaikymo', 'Pažinti', 'Būti pažintam', 'Pastebėjimo', 'Būti pastebėtam', 'Pasitikėjimo', 'Supratimo']  },
+    { title: 'Prasmės', elements: ['Prasmės', 'Sąmoningumo', 'Šventimo', 'Iššūkio', 'Kūrybiškumo', 'Aiškumo', 'Skaidrumo', 'Sugebėjimo', 'Savimonės', 'Prisidėjimo', 'Atradimo', 'Naudingumo', 'Produktyvumo', 'Pasisekimo', 'Augimo', 'Mokymasi', 'Gedėjimo', 'Veiksmo', 'Dalyvavimo', 'Galimybių', 'Pažangos', 'Progreso', 'Tikslo', 'Stimulo', 'Tikėjimo' ]  },
+    { title: 'Harmonijos', elements: ['Darnos', 'Ramybės', 'Balanso', 'Pakankamumo', 'Grožio', 'Lengvumo', 'Sklandumo', 'Tvarkos', 'Taikos', 'Nuoseklumo', 'Lygybės' ]  },
+    ];
+
+export const NEEDS_COMMON_MANTAS_2 = [
+    { title: '', elements: []  },
+    { title: 'Fizinės gerovės', elements: ['Oro / Vandens / Maisto ','Pastogės', 'Judėjimo', 'Poilsio / Miego'  ]  },
+    { title: 'Saugumo', elements: ['Saugumo (emocinio)', 'Pasitikėjimo', 'Stabilumo', 'Garantijų','Tvarkos / Struktūros','Taikos' ]  },
+    { title: 'Laisvės', elements: ['Nepriklausomybės','Laisvės', 'Pasirinkimo', 'Sporntaniškumo','Saviraiškos','Erdvės','Atsitraukimo' ]  },
+    { title: 'Atsipalaidavimo', elements: ['Atsipalaidavimo','Entuziazmo', 'Žaismingumo', 'Smagumo','Humoro','Įvairovės','Malonumo','Lengvumo','Sklandumo','Komforto']  },
+    { title: 'Prielankumo', elements: ['Įvertinimo/Pripažinimo','Palaikymo','Dėmesio','Seksualumo išraiškos', 'Meilės','Prisilietimo','Švelnumo']  },
+    { title: 'Rūpėjimo', elements: ['Priėmimo','Rūpesčio','Atjautos / Empatijos','Jautrumo', 'Pagarbos','Būti pažintu','Supratimo','Pagalbos','Atidumo']  },    
+    { title: 'Bendrumo', elements: ['Ryšio','Priklausymo','Bendradarbiavimo','Lygybės', 'Įsitraukimo','Bendrystės','Dalyvavimo','Dalinimosi','Lygiavertiškumo','Abipusiškumo','Svarbumo',]  },
+    { title: 'Prasmės', elements: ['Iššūkio','Prisidėjimo','Kūrybingumo','Efektyvumo','Tikslo','Naudingumo','Stimulo','Augimo','Smalsumo','Konstruktyvumo'  ]  },
+    { title: 'Identiteto', elements: ['Atvirumo', 'Tikrumo', 'Autentiškumo', 'Kompetencijos', 'Pasitikėjimo savimi', 'Kūrybingumo', 'Orumo', 'Sąžiningumo' ]  },
+    { title: 'Suvokimo', elements: ['Sąmoningumo', 'Aiškumo', 'Atradimo', 'Mokymosi' ]  },
+    { title: 'Harmonijos', elements: ['Darnos', 'Ramybės(vidinės)','Gedėjimo', 'Balanso',  'Grožio','Įkvėpimo']  },
+    ];

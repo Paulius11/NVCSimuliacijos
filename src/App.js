@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./styles.css";
 import InlineEdit from "./components/inlineEdit";
 import Footer from "./components/Footer";
-import { NEEDS_COMMON_ROL, NEEDS_UNMET_ROL, NEEDS_MET_ROL } from "./data/data";
+import { NEEDS_COMMON_ROL, NEEDS_UNMET_ROL, NEEDS_MET_ROL, NEEDS_UNMET_MANTAS, NEEDS_COMMON_MANTAS_2 } from "./data/data";
 import FontSizeChanger from "react-font-size-changer";
 import {
   Accordion,
@@ -36,7 +36,7 @@ export default function App() {
   const [jausmaiAntra, setJausmaiAntra] = useState([]);
   const [jausmaiKartu, setJausmaiKartu] = useState([]);
 
-  const [poreikiai, setPoreikiai] = useState(NEEDS_COMMON_ROL);
+  const [poreikiai, setPoreikiai] = useState(NEEDS_COMMON_MANTAS_2);
 
   const sides = {
     firstSide: "Pirma pusė",
@@ -311,7 +311,7 @@ export default function App() {
               {" "}
               <div className="Column">
                 <Row>
-                  {NEEDS_UNMET_ROL.map((s) => (
+                  {NEEDS_UNMET_MANTAS.map((s) => (
                     <div className="jausmai">
                       <h4>{s.title}</h4>
                       <div style={spalva} onClick={(e) => setColor(e)}>
