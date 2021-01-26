@@ -20,6 +20,10 @@
 
 .options{
 }
+.add{
+ /* pastumia prideti elementa */
+  margin-left: 1em;
+}
 
 .poreikiai {
   /* background-color: #fdf; */
@@ -41,13 +45,7 @@ div .pasirinktaPuse {
   opacity: 0.2;
 }
 
-.col {
-  flex-basis: 0;
-  flex-grow: 1;
-  max-width: 100%;
-  color: #9b9b9b;
 
-}
 .hidden {
   display: none;
 
@@ -142,3 +140,33 @@ body {
   text-align: left;
 }
 
+/* Pliuso mygtuko stilius */
+.plus {
+  margin-left: 4px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  border-radius: 0.6rem ;
+  background-color: rgba(168, 130, 130, 0.75);
+  border: 1px solid rgb(180, 160, 142);
+  font-weight: 700;
+
+  
+  cursor: pointer;
+  transition: background-color 250ms;
+  
+}
+.plus:hover{
+  background-color: rgb(104, 92, 92);
+}
+
+/* List elements */
+.col {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  color: #9b9b9b;
+}
+.col:hover{
+  color: rgba(131, 85, 85, 0.85);
+  background-color: rgba(131, 85, 85, 0.025);
+}

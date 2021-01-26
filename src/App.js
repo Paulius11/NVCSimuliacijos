@@ -22,6 +22,7 @@ export default function App() {
   const [spalva, setSpalva] = useState({ color: DEFAULT_COLOR });
   const [cbox, setCbox] = useState(false);
   const [stickyCbox, setStickyCbox] = useState(false);
+  const [addedElementCbox, setAddedElementCbox] = useState(false);
 
   const [side1, setSide1] = useState("1 pusė");
   const [side2, setSide2] = useState("2 pusė");
@@ -35,10 +36,32 @@ export default function App() {
   const [jausmaiAntra, setJausmaiAntra] = useState([]);
   const [jausmaiKartu, setJausmaiKartu] = useState([]);
 
+  const [poreikiai, setPoreikiai] = useState(NEEDS_COMMON_ROL);
+
   const sides = {
     firstSide: "Pirma pusė",
     secondSide: "Antra pusė",
     together: "Abi pusės",
+  };
+
+  const createliElement = (e) => {
+    // Kuria naują elementą kai nėra sarase esamo elemento
+    console.log(e);
+    let newValue = prompt("Įveskite naują elementą", "");
+    console.log(poreikiai);
+    console.log(newValue);
+    if (newValue) {
+      setPoreikiai((prevState) => {
+        const prevClone = [...prevState];
+
+        prevClone[0] = {
+          ...prevClone[0],
+          elements: [...prevClone[0].elements, newValue],
+        };
+
+        return prevClone;
+      });
+    }
   };
 
   const getColor = () => {
@@ -155,77 +178,86 @@ export default function App() {
 
   return (
     <Container fluid="false" style={{ backgroundColor: "whitesmoke" }}>
-        <Navbar
+      <Navbar
         className="color-nav"
-         bg="light" variant="light"  sticky={stickyCbox ? "top" : ""}
-
-        >
-          <div className="puses">
+        bg="light"
+        variant="light"
+        sticky={stickyCbox ? "top" : ""}
+      >
+        <div className="puses">
+          <div
+            className="pusesElementas"
+            onClick={(e) => setChoice(sides.firstSide)}
+          >
             <div
-              className="pusesElementas"
-              onClick={(e) => setChoice(sides.firstSide)}
-            >
-              <div
-                className={`colorSelect red column ${
-                  choice === sides.firstSide && "pasirinktaPuse"
-                } `}
-              ></div>
+              className={`colorSelect red column ${
+                choice === sides.firstSide && "pasirinktaPuse"
+              } `}
+            ></div>
 
-              <InlineEdit text={side1} onSetText={(text) => setSide1(text)} />
-            </div>
-            <div
-              className="pusesElementas"
-              onClick={() => setChoice(sides.secondSide)}
-            >
-              <div
-                className={`colorSelect blue column ${
-                  choice === sides.secondSide && "pasirinktaPuse"
-                } `}
-              ></div>
-              <InlineEdit text={side2} onSetText={(text) => setSide2(text)} />
-            </div>
-            <div
-              className="pusesElementas"
-              onClick={() => setChoice(sides.together)}
-            >
-              <div
-                className={`colorSelect green column ${
-                  choice === sides.together && "pasirinktaPuse"
-                } `}
-              ></div>
-              <InlineEdit text={side3} onSetText={(text) => setSide3(text)} />
-            </div>
-            <div className={"options"}>
-              <Form.Check
-                type="checkbox"
-                checked={cbox}
-                label="Slėpti nepažymėtus"
-                onChange={() => {
-                  setCbox(!cbox);
-                }}
-              />{" "}
-
-                <Form.Check
-                type="checkbox"
-                checked={stickyCbox}
-                label="Priklijuoti"
-                onChange={() => {
-                  setStickyCbox(!stickyCbox);
-                }}
-              />{" "} 
-            </div>
+            <InlineEdit text={side1} onSetText={(text) => setSide1(text)} />
           </div>
-          <FontSizeChanger
-                targets={[".Column li"]}
-                onChange={(element, newValue, oldValue) => {
-                  console.log(element, newValue, oldValue);
-                }}
-                options={{
-                  stepSize: 1,
-                  range: 5,
-                }}
-              />
-        </Navbar>
+          <div
+            className="pusesElementas"
+            onClick={() => setChoice(sides.secondSide)}
+          >
+            <div
+              className={`colorSelect blue column ${
+                choice === sides.secondSide && "pasirinktaPuse"
+              } `}
+            ></div>
+            <InlineEdit text={side2} onSetText={(text) => setSide2(text)} />
+          </div>
+          <div
+            className="pusesElementas"
+            onClick={() => setChoice(sides.together)}
+          >
+            <div
+              className={`colorSelect green column ${
+                choice === sides.together && "pasirinktaPuse"
+              } `}
+            ></div>
+            <InlineEdit text={side3} onSetText={(text) => setSide3(text)} />
+          </div>
+          <div className={"options"}>
+            <Form.Check
+              type="checkbox"
+              checked={cbox}
+              label="Slėpti nepažymėtus"
+              onChange={() => {
+                setCbox(!cbox);
+              }}
+            />{" "}
+            <Form.Check
+              type="checkbox"
+              checked={stickyCbox}
+              label="Priklijuoti"
+              onChange={() => {
+                setStickyCbox(!stickyCbox);
+              }}
+            />{" "}
+          </div>
+          <Form.Check
+            type="checkbox"
+            checked={addedElementCbox}
+            label="Pridėti"
+            className={"add"}
+            onChange={() => {
+              setAddedElementCbox(!addedElementCbox);
+            }}
+          />{" "}
+        </div>
+        <FontSizeChanger
+          targets={[".Column li"]}
+          onChange={(element, newValue, oldValue) => {
+            console.log(element, newValue, oldValue);
+          }}
+          options={{
+            stepSize: 1,
+            range: 5,
+          }}
+        />
+      </Navbar>
       <Accordion defaultActiveKey="0">
         <Card>
           <Card.Header>
@@ -235,20 +267,24 @@ export default function App() {
           </Card.Header>
           <Accordion.Collapse eventKey="0">
             <Card.Body className="suspaustasIsdestimas">
-              {" "}
               <div className="Column">
-                {NEEDS_COMMON_ROL.map((s) => (
+                {addedElementCbox ? <div className={"plus"} onClick={createliElement}>+</div> : undefined}
+                {" "}
+                {/* Add new element */}
+                {poreikiai.map((s) => (
                   <div className="poreikiai">
                     <h4>{s.title}</h4>
                     <div style={spalva} onClick={(e) => setColor(e)}>
                       <ol>
-                        {s.elements.map((poreikis) => (
+                        {s.elements.map((poreikis, i) => (
                           <Col>
                             <li
-                              className={cbox ? "hidden" : false}
+                              className={cbox ? "hidden" : undefined}
                               key={poreikis}
                             >
                               {poreikis}
+                              {/* Tikrina ar paskutinis elementas */}
+                              {/* {s.elements.length === i + 1 ? <div className={"plus"} onClick={createliElement}>+</div> : ""} */}
                             </li>
                           </Col>
                         ))}
@@ -281,9 +317,12 @@ export default function App() {
                         <ol>
                           {s.elements.map((jausmas) => (
                             <Col>
-                              <li 
-                              className={cbox ? "hidden" : false}
-                              key={jausmas}>{jausmas}</li>
+                              <li
+                                className={cbox ? "hidden" : undefined}
+                                key={jausmas}
+                              >
+                                {jausmas}
+                              </li>
                             </Col>
                           ))}
                         </ol>
@@ -317,9 +356,12 @@ export default function App() {
                           {s.elements.map((jausmas) => (
                             <Col>
                               <li
-                              className={cbox ? "hidden" : false}
-                              key={jausmas}
-                              key={jausmas}>{jausmas}</li>
+                                className={cbox ? "hidden" : undefined}
+                                key={jausmas}
+                                key={jausmas}
+                              >
+                                {jausmas}
+                              </li>
                             </Col>
                           ))}
                         </ol>
@@ -334,20 +376,106 @@ export default function App() {
       </Accordion>
       <hr />
       <Container>
+        <p>
+          Konstruktyvus konflikto deeskalavimas atsižvelgiant į abiejų pusių
+          poreikius ir jausmus.
+        </p>
 
+        <Accordion defaultActiveKey="0">
+          <div className="text">
+            <Card>
+              <Card.Header>
+                <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                  <b>1. Žingsnis.</b> Atspindėjimas kitos pusės jausmus ir
+                  poreikius.
+                </Accordion.Toggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey="0">
+                <Card.Body>
+                  <Row>
+                    <Col>
+                      <p>
+                        <b>Stebėjimas</b>
+                      </p>{" "}
+                      <p>
+                        <i>kai matau / girdžiu</i>
+                      </p>
+                      <Form>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                          <Form.Control as="textarea" rows={3} />
+                        </Form.Group>
+                      </Form>
+                    </Col>
+                    <Col>
+                      <p>
+                        <b>Jausmai</b>
+                      </p>{" "}
+                      <p>
+                        <i>atrodo, kad jautiesi</i>
+                      </p>
+                      {jausmaiAntra.map((element) => (
+                        <p className="text " style={{ color: "blue" }}>
+                          {element}
+                        </p>
+                      ))}{" "}
+                      {jausmaiKartu.map((element) => (
+                        <p className="text " style={{ color: "green" }}>
+                          {element}
+                        </p>
+                      ))}{" "}
+                      {/* {jausmaiPirma.map((element) => (
+                        <p className="text " style={{ color: "red" }}>
+                          {element}
+                        </p>
+                      ))}{" "} */}
+                      {/* <Form>
+                      <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Control as="textarea" rows={3} />
+                      </Form.Group>
+                    </Form> */}
+                    </Col>
+                    <Col>
+                      <p>
+                        <b>Poreikis</b>
+                      </p>{" "}
+                      <p>
+                        <i>nes yra noras?</i>
+                      </p>
+                      {poreikiaiAntra.map((element) => (
+                        <p className="text " style={{ color: "blue" }}>
+                          {element}
+                        </p>
+                      ))}{" "}
+                      {poreikiaiKartu.map((element) => (
+                        <p className="text " style={{ color: "green" }}>
+                          {element}
+                        </p>
+                      ))}{" "}
+                      {/* {poreikiaiPirma.map((element) => (
+                        <p className="text " style={{ color: "red" }}>
+                          {element}
+                        </p>
+                      ))}{" "} */}
+                      {/* <Form>
+                      <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Control as="textarea" rows={3} />
+                      </Form.Group>
+                    </Form> */}
+                    </Col>
+                    <Col>Ar gerai tave suprantu?</Col>
+                  </Row>
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </div>
+        </Accordion>
 
-      <p >
-        Konstruktyvus konflikto deeskalavimas atsižvelgiant į abiejų pusių
-        poreikius ir jausmus.
-      </p>
-
-      <Accordion defaultActiveKey="0">
-        <div className="text">
+        <hr />
+        <Accordion className="text">
           <Card>
             <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                <b>1. Žingsnis.</b> Atspindėjimas kitos pusės jausmus ir
-                poreikius.
+                <b>2. Žingsnis.</b> Išsakymas savo jausmų ir poreikių.
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="0">
@@ -358,7 +486,7 @@ export default function App() {
                       <b>Stebėjimas</b>
                     </p>{" "}
                     <p>
-                      <i>kai matau / girdžiu</i>
+                      <i>Pastebiu, kad:</i>
                     </p>
                     <Form>
                       <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -371,10 +499,10 @@ export default function App() {
                       <b>Jausmai</b>
                     </p>{" "}
                     <p>
-                      <i>atrodo, kad jautiesi</i>
+                      <i>Jaučiuosi:</i>
                     </p>
-                    {jausmaiAntra.map((element) => (
-                      <p className="text " style={{ color: "blue" }}>
+                    {jausmaiPirma.map((element) => (
+                      <p className="text " style={{ color: "red" }}>
                         {element}
                       </p>
                     ))}{" "}
@@ -383,26 +511,26 @@ export default function App() {
                         {element}
                       </p>
                     ))}{" "}
-                    {/* {jausmaiPirma.map((element) => (
-                        <p className="text " style={{ color: "red" }}>
+                    {/* {jausmaiAntra.map((element) => (
+                        <p className="text " style={{ color: "blue" }}>
                           {element}
                         </p>
                       ))}{" "} */}
                     {/* <Form>
-                      <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Control as="textarea" rows={3} />
-                      </Form.Group>
-                    </Form> */}
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                      <Form.Control as="textarea" rows={3} />
+                    </Form.Group>
+                  </Form> */}
                   </Col>
                   <Col>
                     <p>
                       <b>Poreikis</b>
                     </p>{" "}
                     <p>
-                      <i>nes yra noras?</i>
+                      <i>Nes norisi:</i>
                     </p>
-                    {poreikiaiAntra.map((element) => (
-                      <p className="text " style={{ color: "blue" }}>
+                    {poreikiaiPirma.map((element) => (
+                      <p className="text " style={{ color: "red" }}>
                         {element}
                       </p>
                     ))}{" "}
@@ -411,125 +539,36 @@ export default function App() {
                         {element}
                       </p>
                     ))}{" "}
-                    {/* {poreikiaiPirma.map((element) => (
-                        <p className="text " style={{ color: "red" }}>
+                    {/* {poreikiaiAntra.map((element) => (
+                        <p className="text " style={{ color: "blue" }}>
                           {element}
                         </p>
                       ))}{" "} */}
                     {/* <Form>
-                      <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Control as="textarea" rows={3} />
-                      </Form.Group>
-                    </Form> */}
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                      <Form.Control as="textarea" rows={3} />
+                    </Form.Group>
+                  </Form> */}
                   </Col>
-                  <Col>Ar gerai tave suprantu?</Col>
+                  <Col>
+                    <p>
+                      <b>Prašymas</b>
+                    </p>{" "}
+                    <p>
+                      <i>Ar tau tiktų jeigu...?</i>
+                    </p>
+                    {/* <Form>
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                      <Form.Control as="textarea" rows={3} />
+                    </Form.Group>
+                  </Form> */}
+                  </Col>
                 </Row>
               </Card.Body>
             </Accordion.Collapse>
           </Card>
-        </div>
-      </Accordion>
-
-      <hr />
-      <Accordion className="text">
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Button} variant="link" eventKey="0">
-              <b>2. Žingsnis.</b> Išsakymas savo jausmų ir poreikių.
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>
-              <Row>
-                <Col>
-                  <p>
-                    <b>Stebėjimas</b>
-                  </p>{" "}
-                  <p>
-                    <i>Pastebiu, kad:</i>
-                  </p>
-                  <Form>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                      <Form.Control as="textarea" rows={3} />
-                    </Form.Group>
-                  </Form>
-                </Col>
-                <Col>
-                  <p>
-                    <b>Jausmai</b>
-                  </p>{" "}
-                  <p>
-                    <i>Jaučiuosi:</i>
-                  </p>
-                  {jausmaiPirma.map((element) => (
-                    <p className="text " style={{ color: "red" }}>
-                      {element}
-                    </p>
-                  ))}{" "}
-                  {jausmaiKartu.map((element) => (
-                    <p className="text " style={{ color: "green" }}>
-                      {element}
-                    </p>
-                  ))}{" "}
-                  {/* {jausmaiAntra.map((element) => (
-                        <p className="text " style={{ color: "blue" }}>
-                          {element}
-                        </p>
-                      ))}{" "} */}
-                  {/* <Form>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                      <Form.Control as="textarea" rows={3} />
-                    </Form.Group>
-                  </Form> */}
-                </Col>
-                <Col>
-                  <p>
-                    <b>Poreikis</b>
-                  </p>{" "}
-                  <p>
-                    <i>Nes norisi:</i>
-                  </p>
-                  {poreikiaiPirma.map((element) => (
-                    <p className="text " style={{ color: "red" }}>
-                      {element}
-                    </p>
-                  ))}{" "}
-                  {poreikiaiKartu.map((element) => (
-                    <p className="text " style={{ color: "green" }}>
-                      {element}
-                    </p>
-                  ))}{" "}
-                  {/* {poreikiaiAntra.map((element) => (
-                        <p className="text " style={{ color: "blue" }}>
-                          {element}
-                        </p>
-                      ))}{" "} */}
-                  {/* <Form>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                      <Form.Control as="textarea" rows={3} />
-                    </Form.Group>
-                  </Form> */}
-                </Col>
-                <Col>
-                  <p>
-                    <b>Prašymas</b>
-                  </p>{" "}
-                  <p>
-                    <i>Ar tau tiktų jeigu...?</i>
-                  </p>
-                  {/* <Form>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                      <Form.Control as="textarea" rows={3} />
-                    </Form.Group>
-                  </Form> */}
-                </Col>
-              </Row>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
+        </Accordion>
       </Container>
-
     </Container>
   );
 }
