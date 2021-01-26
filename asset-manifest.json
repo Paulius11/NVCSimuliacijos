@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/NVCSimuliacijos/static/css/main.a67b348c.chunk.css",
-    "main.js": "/NVCSimuliacijos/static/js/main.5872d04a.chunk.js",
-    "main.js.map": "/NVCSimuliacijos/static/js/main.5872d04a.chunk.js.map",
+    "main.js": "/NVCSimuliacijos/static/js/main.4e8dfec0.chunk.js",
+    "main.js.map": "/NVCSimuliacijos/static/js/main.4e8dfec0.chunk.js.map",
     "runtime-main.js": "/NVCSimuliacijos/static/js/runtime-main.6c585eba.js",
     "runtime-main.js.map": "/NVCSimuliacijos/static/js/runtime-main.6c585eba.js.map",
     "static/css/2.6a4fca40.chunk.css": "/NVCSimuliacijos/static/css/2.6a4fca40.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.6a4fca40.chunk.css",
     "static/js/2.e6fe534f.chunk.js",
     "static/css/main.a67b348c.chunk.css",
-    "static/js/main.5872d04a.chunk.js"
+    "static/js/main.4e8dfec0.chunk.js"
   ]
 }
