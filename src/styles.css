@@ -146,8 +146,8 @@ body {
   text-align: center;
   color: rgb(255, 255, 255);
   border-radius: 0.6rem ;
-  background-color: rgba(168, 130, 130, 0.75);
-  border: 1px solid rgb(180, 160, 142);
+  background-color: rgba(168, 130, 130, 0.432);
+  border: 1px solid rgba(180, 160, 142, 0.233);
   font-weight: 700;
 
   
@@ -156,7 +156,7 @@ body {
   
 }
 .plus:hover{
-  background-color: rgb(104, 92, 92);
+  background-color: rgb(168, 165, 165);
 }
 
 /* List elements */
@@ -167,6 +167,6 @@ body {
   color: #9b9b9b;
 }
 .col:hover{
-  color: rgba(131, 85, 85, 0.85);
+  color: rgba(172, 123, 123, 0.918);
   background-color: rgba(131, 85, 85, 0.025);
 }
