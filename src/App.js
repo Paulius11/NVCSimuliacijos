@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./styles.css";
 import InlineEdit from "./components/inlineEdit";
+import Element from "./components/Card";
 import Footer from "./components/Footer";
 import {
   NEEDS_COMMON_ROL,
@@ -302,26 +303,8 @@ export default function App() {
                     </div>
                   ) : undefined}
                   {/* Add new element */}
-                  {poreikiai.map((s) => (
-                    <div className="poreikiai">
-                      <h4>{s.title}</h4>
-                      <div style={spalva} onClick={(e) => setColor(e)}>
-                        <ol>
-                          {s.elements.map((poreikis, i) => (
-                            <Col>
-                              <li
-                                className={cbox ? "hidden" : undefined}
-                                key={poreikis}
-                              >
-                                {poreikis}
-                                {/* Tikrina ar paskutinis elementas */}
-                                {/* {s.elements.length === i + 1 ? <div className={"plus"} onClick={createliElement}>+</div> : ""} */}
-                              </li>
-                            </Col>
-                          ))}
-                        </ol>
-                      </div>
-                    </div>
+                  {poreikiai.map((element) => (
+                    <Element need={element} spalva={spalva} cbox={cbox} key={element.title} setColor={(e) => setColor(e)} nameOfClass="poreikiai"/>
                   ))}
                 </div>
               </Card.Body>
@@ -339,32 +322,14 @@ export default function App() {
             <Accordion.Collapse eventKey="0">
               <Card.Body className="suspaustasIsdestimas">
                 <div className="Column">
-
-
                   {addedElementCbox ? (
                     <div className={"plus"} onClick={createliElement}>
                       +
                     </div>
                   ) : undefined}
 
-                    {jausmaiMinus.map((s) => (
-                      <div className="jausmai">
-                        <h4>{s.title}</h4>
-                        <div style={spalva} onClick={(e) => setColor(e)}>
-                          <ol>
-                            {s.elements.map((jausmas) => (
-                              <Col>
-                                <li
-                                  className={cbox ? "hidden" : undefined}
-                                  key={jausmas}
-                                >
-                                  {jausmas}
-                                </li>
-                              </Col>
-                            ))}
-                          </ol>
-                        </div>
-                      </div>
+                    {jausmaiMinus.map((element) => (
+                      <Element need={element} spalva={spalva} cbox={cbox} key={element.title} setColor={(e) => setColor(e)} nameOfClass="jausmai"/>
                     ))}
                 </div>
               </Card.Body>
@@ -384,25 +349,8 @@ export default function App() {
                 {" "}
                 <div className="Column">
                   <Row>
-                    {NEEDS_MET_ROL.map((s) => (
-                      <div className="jausmai">
-                        <h4>{s.title}</h4>
-                        <div style={spalva} onClick={(e) => setColor(e)}>
-                          <ol>
-                            {s.elements.map((jausmas) => (
-                              <Col>
-                                <li
-                                  className={cbox ? "hidden" : undefined}
-                                  key={jausmas}
-                                  key={jausmas}
-                                >
-                                  {jausmas}
-                                </li>
-                              </Col>
-                            ))}
-                          </ol>
-                        </div>
-                      </div>
+                    {NEEDS_MET_ROL.map((element) => (
+                      <Element need={element} spalva={spalva} cbox={cbox} key={element.title} setColor={(e) => setColor(e)} nameOfClass="jausmai"/ >
                     ))}
                   </Row>
                 </div>
