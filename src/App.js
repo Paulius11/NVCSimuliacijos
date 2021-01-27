@@ -19,8 +19,6 @@ import {
   Col,
   Form,
   Navbar,
-  Nav,
-  NavDropdown,
 } from "react-bootstrap";
 
 export default function App() {
@@ -45,6 +43,7 @@ export default function App() {
   const [jausmaiKartu, setJausmaiKartu] = useState([]);
 
   const [poreikiai, setPoreikiai] = useState(NEEDS_COMMON_MANTAS_2);
+  const [jausmaiMinus, setJausmaiMinus] = useState(NEEDS_UNMET_MANTAS);
 
   const sides = {
     firstSide: "Pirma pusė",
@@ -55,11 +54,28 @@ export default function App() {
   const createliElement = (e) => {
     // Kuria naują elementą kai nėra sarase esamo elemento
     console.log(e);
+    // window.a = e.target;
     let newValue = prompt("Įveskite naują elementą", "");
     console.log(poreikiai);
     console.log(newValue);
+    const getSibling = e.target.nextElementSibling.classList.value
+    console.log(getSibling)
+
     if (newValue) {
-      setPoreikiai((prevState) => {
+      if(getSibling === "poreikiai") {
+        setPoreikiai((prevState) => {
+          const prevClone = [...prevState];
+
+          prevClone[0] = {
+            ...prevClone[0],
+            elements: [...prevClone[0].elements, newValue],
+          };
+
+          return prevClone;
+        });
+    }
+    if(getSibling === "jausmai") { 
+      setJausmaiMinus((prevState) => {
         const prevClone = [...prevState];
 
         prevClone[0] = {
@@ -69,6 +85,9 @@ export default function App() {
 
         return prevClone;
       });
+
+    }
+
     }
   };
 
@@ -281,7 +300,7 @@ export default function App() {
                     <div className={"plus"} onClick={createliElement}>
                       +
                     </div>
-                  ) : undefined}{" "}
+                  ) : undefined}
                   {/* Add new element */}
                   {poreikiai.map((s) => (
                     <div className="poreikiai">
@@ -318,11 +337,17 @@ export default function App() {
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="0">
-              <Card.Body>
-                {" "}
+              <Card.Body className="suspaustasIsdestimas">
                 <div className="Column">
-                  <Row>
-                    {NEEDS_UNMET_MANTAS.map((s) => (
+
+
+                  {addedElementCbox ? (
+                    <div className={"plus"} onClick={createliElement}>
+                      +
+                    </div>
+                  ) : undefined}
+
+                    {jausmaiMinus.map((s) => (
                       <div className="jausmai">
                         <h4>{s.title}</h4>
                         <div style={spalva} onClick={(e) => setColor(e)}>
@@ -341,7 +366,6 @@ export default function App() {
                         </div>
                       </div>
                     ))}
-                  </Row>
                 </div>
               </Card.Body>
             </Accordion.Collapse>

@@ -87,6 +87,7 @@ export const NEEDS_COMMON_IEVA = [
 // Manto pakeitimai
 
 export const NEEDS_UNMET_MANTAS = [
+    { title: '', elements: []  },
     { needs:"unmet", title: 'Baimę', elements: ['Gėdą','Susirūpinimą','Pasipriešinimą','Nerimą','Stresą','Baimę', 'Išgąstį', 'Siaubą', 'Paniką']  },
     { needs:"unmet", title: 'Pyktį', elements: ['Pavydą','Nekantrumą', 'Susierzinimą',  'Frustraciją', 'Priešiškumą', 'Kerštingumą', 'Įsiutį', 'Pagiežą' ]  },
     { needs:"unmet", title: 'Liūdesį', elements: ['Kaltę','Bėjėgiškumą', 'Vienišumą','Nusivylimą', 'Apmaudą', 'Ilgesį', 'Nusivilimą', 'Sielvartą', 'Širdgėlą' ]  },
