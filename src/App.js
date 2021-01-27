@@ -59,11 +59,11 @@ export default function App() {
     let newValue = prompt("Įveskite naują elementą", "");
     console.log(poreikiai);
     console.log(newValue);
-    const getSibling = e.target.nextElementSibling.classList.value
-    console.log(getSibling)
+    const getSibling = e.target.nextElementSibling.classList.value;
+    console.log(getSibling);
 
     if (newValue) {
-      if(getSibling === "poreikiai") {
+      if (getSibling === "poreikiai") {
         setPoreikiai((prevState) => {
           const prevClone = [...prevState];
 
@@ -74,21 +74,19 @@ export default function App() {
 
           return prevClone;
         });
-    }
-    if(getSibling === "jausmai") { 
-      setJausmaiMinus((prevState) => {
-        const prevClone = [...prevState];
+      }
+      if (getSibling === "jausmai") {
+        setJausmaiMinus((prevState) => {
+          const prevClone = [...prevState];
 
-        prevClone[0] = {
-          ...prevClone[0],
-          elements: [...prevClone[0].elements, newValue],
-        };
+          prevClone[0] = {
+            ...prevClone[0],
+            elements: [...prevClone[0].elements, newValue],
+          };
 
-        return prevClone;
-      });
-
-    }
-
+          return prevClone;
+        });
+      }
     }
   };
 
@@ -304,7 +302,14 @@ export default function App() {
                   ) : undefined}
                   {/* Add new element */}
                   {poreikiai.map((element) => (
-                    <Element need={element} spalva={spalva} cbox={cbox} key={element.title} setColor={(e) => setColor(e)} nameOfClass="poreikiai"/>
+                    <Element
+                      need={element}
+                      spalva={spalva}
+                      cbox={cbox}
+                      key={element.title}
+                      setColor={(e) => setColor(e)}
+                      nameOfClass="poreikiai"
+                    />
                   ))}
                 </div>
               </Card.Body>
@@ -328,9 +333,16 @@ export default function App() {
                     </div>
                   ) : undefined}
 
-                    {jausmaiMinus.map((element) => (
-                      <Element need={element} spalva={spalva} cbox={cbox} key={element.title} setColor={(e) => setColor(e)} nameOfClass="jausmai"/>
-                    ))}
+                  {jausmaiMinus.map((element) => (
+                    <Element
+                      need={element}
+                      spalva={spalva}
+                      cbox={cbox}
+                      key={element.title}
+                      setColor={(e) => setColor(e)}
+                      nameOfClass="jausmai"
+                    />
+                  ))}
                 </div>
               </Card.Body>
             </Accordion.Collapse>
@@ -350,7 +362,14 @@ export default function App() {
                 <div className="Column">
                   <Row>
                     {NEEDS_MET_ROL.map((element) => (
-                      <Element need={element} spalva={spalva} cbox={cbox} key={element.title} setColor={(e) => setColor(e)} nameOfClass="jausmai"/ >
+                      <Element
+                        need={element}
+                        spalva={spalva}
+                        cbox={cbox}
+                        key={element.title}
+                        setColor={(e) => setColor(e)}
+                        nameOfClass="jausmai"
+                      />
                     ))}
                   </Row>
                 </div>
