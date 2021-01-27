@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/NVCSimuliacijos/static/css/main.a67b348c.chunk.css",
-    "main.js": "/NVCSimuliacijos/static/js/main.4e8dfec0.chunk.js",
-    "main.js.map": "/NVCSimuliacijos/static/js/main.4e8dfec0.chunk.js.map",
+    "main.js": "/NVCSimuliacijos/static/js/main.d04406a5.chunk.js",
+    "main.js.map": "/NVCSimuliacijos/static/js/main.d04406a5.chunk.js.map",
     "runtime-main.js": "/NVCSimuliacijos/static/js/runtime-main.6c585eba.js",
     "runtime-main.js.map": "/NVCSimuliacijos/static/js/runtime-main.6c585eba.js.map",
     "static/css/2.6a4fca40.chunk.css": "/NVCSimuliacijos/static/css/2.6a4fca40.chunk.css",
-    "static/js/2.e6fe534f.chunk.js": "/NVCSimuliacijos/static/js/2.e6fe534f.chunk.js",
-    "static/js/2.e6fe534f.chunk.js.map": "/NVCSimuliacijos/static/js/2.e6fe534f.chunk.js.map",
+    "static/js/2.bbea0cca.chunk.js": "/NVCSimuliacijos/static/js/2.bbea0cca.chunk.js",
+    "static/js/2.bbea0cca.chunk.js.map": "/NVCSimuliacijos/static/js/2.bbea0cca.chunk.js.map",
     "index.html": "/NVCSimuliacijos/index.html",
     "static/css/2.6a4fca40.chunk.css.map": "/NVCSimuliacijos/static/css/2.6a4fca40.chunk.css.map",
     "static/css/main.a67b348c.chunk.css.map": "/NVCSimuliacijos/static/css/main.a67b348c.chunk.css.map",
-    "static/js/2.e6fe534f.chunk.js.LICENSE.txt": "/NVCSimuliacijos/static/js/2.e6fe534f.chunk.js.LICENSE.txt"
+    "static/js/2.bbea0cca.chunk.js.LICENSE.txt": "/NVCSimuliacijos/static/js/2.bbea0cca.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.6c585eba.js",
     "static/css/2.6a4fca40.chunk.css",
-    "static/js/2.e6fe534f.chunk.js",
+    "static/js/2.bbea0cca.chunk.js",
     "static/css/main.a67b348c.chunk.css",
-    "static/js/main.4e8dfec0.chunk.js"
+    "static/js/main.d04406a5.chunk.js"
   ]
 }
