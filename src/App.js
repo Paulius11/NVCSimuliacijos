@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import "./styles.css";
 import InlineEdit from "./components/inlineEdit";
 import Footer from "./components/Footer";
-import { NEEDS_COMMON_ROL, NEEDS_UNMET_ROL, NEEDS_MET_ROL, NEEDS_UNMET_MANTAS, NEEDS_COMMON_MANTAS_2 } from "./data/data";
+import {
+  NEEDS_COMMON_ROL,
+  NEEDS_UNMET_ROL,
+  NEEDS_MET_ROL,
+  NEEDS_UNMET_MANTAS,
+  NEEDS_COMMON_MANTAS_2,
+} from "./data/data";
 import FontSizeChanger from "react-font-size-changer";
 import {
   Accordion,
@@ -13,6 +19,8 @@ import {
   Col,
   Form,
   Navbar,
+  Nav,
+  NavDropdown,
 } from "react-bootstrap";
 
 export default function App() {
@@ -178,151 +186,117 @@ export default function App() {
 
   return (
     <>
-    <Container fluid="false" style={{ backgroundColor: "whitesmoke" }}>
-      <Navbar
-        className="color-nav"
-        bg="light"
-        variant="light"
-        sticky={stickyCbox ? "top" : ""}
-      >
-        <div className="puses">
-          <div
-            className="pusesElementas"
-            onClick={(e) => setChoice(sides.firstSide)}
-          >
+      <Container fluid="false" style={{ backgroundColor: "whitesmoke" }}>
+        <Navbar
+          className="color-nav"
+          bg="light"
+          variant="light"
+          sticky={stickyCbox ? "top" : ""}
+        >
+          <div className="puses">
             <div
-              className={`colorSelect red column ${
-                choice === sides.firstSide && "pasirinktaPuse"
-              } `}
-            ></div>
+              className="pusesElementas"
+              onClick={(e) => setChoice(sides.firstSide)}
+            >
+              <div
+                className={`colorSelect red column ${
+                  choice === sides.firstSide && "pasirinktaPuse"
+                } `}
+              ></div>
 
-            <InlineEdit text={side1} onSetText={(text) => setSide1(text)} />
-          </div>
-          <div
-            className="pusesElementas"
-            onClick={() => setChoice(sides.secondSide)}
-          >
+              <InlineEdit text={side1} onSetText={(text) => setSide1(text)} />
+            </div>
             <div
-              className={`colorSelect blue column ${
-                choice === sides.secondSide && "pasirinktaPuse"
-              } `}
-            ></div>
-            <InlineEdit text={side2} onSetText={(text) => setSide2(text)} />
-          </div>
-          <div
-            className="pusesElementas"
-            onClick={() => setChoice(sides.together)}
-          >
+              className="pusesElementas"
+              onClick={() => setChoice(sides.secondSide)}
+            >
+              <div
+                className={`colorSelect blue column ${
+                  choice === sides.secondSide && "pasirinktaPuse"
+                } `}
+              ></div>
+              <InlineEdit text={side2} onSetText={(text) => setSide2(text)} />
+            </div>
             <div
-              className={`colorSelect green column ${
-                choice === sides.together && "pasirinktaPuse"
-              } `}
-            ></div>
-            <InlineEdit text={side3} onSetText={(text) => setSide3(text)} />
-          </div>
-          <div className={"options"}>
+              className="pusesElementas"
+              onClick={() => setChoice(sides.together)}
+            >
+              <div
+                className={`colorSelect green column ${
+                  choice === sides.together && "pasirinktaPuse"
+                } `}
+              ></div>
+              <InlineEdit text={side3} onSetText={(text) => setSide3(text)} />
+            </div>
+            <div className={"options"}>
+              <Form.Check
+                type="checkbox"
+                checked={cbox}
+                label="Slėpti nepažymėtus"
+                onChange={() => {
+                  setCbox(!cbox);
+                }}
+              />
+              <Form.Check
+                type="checkbox"
+                checked={stickyCbox}
+                label="Priklijuoti"
+                onChange={() => {
+                  setStickyCbox(!stickyCbox);
+                }}
+              />
+            </div>
             <Form.Check
               type="checkbox"
-              checked={cbox}
-              label="Slėpti nepažymėtus"
+              checked={addedElementCbox}
+              label="Pridėti"
+              className={"add"}
               onChange={() => {
-                setCbox(!cbox);
+                setAddedElementCbox(!addedElementCbox);
               }}
-            />{" "}
-            <Form.Check
-              type="checkbox"
-              checked={stickyCbox}
-              label="Priklijuoti"
-              onChange={() => {
-                setStickyCbox(!stickyCbox);
-              }}
-            />{" "}
+            />
           </div>
-          <Form.Check
-            type="checkbox"
-            checked={addedElementCbox}
-            label="Pridėti"
-            className={"add"}
-            onChange={() => {
-              setAddedElementCbox(!addedElementCbox);
+          <FontSizeChanger
+            targets={[".Column li"]}
+            onChange={(element, newValue, oldValue) => {
+              console.log(element, newValue, oldValue);
             }}
-          />{" "}
-        </div>
-        <FontSizeChanger
-          targets={[".Column li"]}
-          onChange={(element, newValue, oldValue) => {
-            console.log(element, newValue, oldValue);
-          }}
-          options={{
-            stepSize: 1,
-            range: 5,
-          }}
-        />
-      </Navbar>
-      <Accordion defaultActiveKey="0">
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Button} variant="link" eventKey="0">
-              Poreikiai
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body className="suspaustasIsdestimas">
-              <div className="Column">
-                {addedElementCbox ? <div className={"plus"} onClick={createliElement}>+</div> : undefined}
-                {" "}
-                {/* Add new element */}
-                {poreikiai.map((s) => (
-                  <div className="poreikiai">
-                    <h4>{s.title}</h4>
-                    <div style={spalva} onClick={(e) => setColor(e)}>
-                      <ol>
-                        {s.elements.map((poreikis, i) => (
-                          <Col>
-                            <li
-                              className={cbox ? "hidden" : undefined}
-                              key={poreikis}
-                            >
-                              {poreikis}
-                              {/* Tikrina ar paskutinis elementas */}
-                              {/* {s.elements.length === i + 1 ? <div className={"plus"} onClick={createliElement}>+</div> : ""} */}
-                            </li>
-                          </Col>
-                        ))}
-                      </ol>
+            options={{
+              stepSize: 1,
+              range: 5,
+            }}
+          />
+        </Navbar>
+        <Accordion defaultActiveKey="0">
+          <Card>
+            <Card.Header>
+              <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                Poreikiai
+              </Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey="0">
+              <Card.Body className="suspaustasIsdestimas">
+                <div className="Column">
+                  {addedElementCbox ? (
+                    <div className={"plus"} onClick={createliElement}>
+                      +
                     </div>
-                  </div>
-                ))}
-              </div>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
-
-      <Accordion>
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Button} variant="link" eventKey="0">
-              Kokius jausmus jaučime, kai poreikiai nėra patenkinti
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>
-              {" "}
-              <div className="Column">
-                <Row>
-                  {NEEDS_UNMET_MANTAS.map((s) => (
-                    <div className="jausmai">
+                  ) : undefined}{" "}
+                  {/* Add new element */}
+                  {poreikiai.map((s) => (
+                    <div className="poreikiai">
                       <h4>{s.title}</h4>
                       <div style={spalva} onClick={(e) => setColor(e)}>
                         <ol>
-                          {s.elements.map((jausmas) => (
+                          {s.elements.map((poreikis, i) => (
                             <Col>
                               <li
                                 className={cbox ? "hidden" : undefined}
-                                key={jausmas}
+                                key={poreikis}
                               >
-                                {jausmas}
+                                {poreikis}
+                                {/* Tikrina ar paskutinis elementas */}
+                                {/* {s.elements.length === i + 1 ? <div className={"plus"} onClick={createliElement}>+</div> : ""} */}
                               </li>
                             </Col>
                           ))}
@@ -330,318 +304,422 @@ export default function App() {
                       </div>
                     </div>
                   ))}
-                </Row>
-              </div>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
-
-      <Accordion>
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Button} variant="link" eventKey="0">
-              Jausmai, kai poreikiai patenkinti
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>
-              {" "}
-              <div className="Column">
-                <Row>
-                  {NEEDS_MET_ROL.map((s) => (
-                    <div className="jausmai">
-                      <h4>{s.title}</h4>
-                      <div style={spalva} onClick={(e) => setColor(e)}>
-                        <ol>
-                          {s.elements.map((jausmas) => (
-                            <Col>
-                              <li
-                                className={cbox ? "hidden" : undefined}
-                                key={jausmas}
-                                key={jausmas}
-                              >
-                                {jausmas}
-                              </li>
-                            </Col>
-                          ))}
-                        </ol>
-                      </div>
-                    </div>
-                  ))}
-                </Row>
-              </div>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
-      <hr />
-      <Container>
-
-
-      <p >
-        Konstruktyvus konflikto deeskalavimas atsižvelgiant į abiejų pusių
-        poreikius ir jausmus.
-      </p>
-  <Accordion >
-        <div className="text">
-          <Card>
-            <Card.Header>
-              <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                1. Pavyzdys - konfliktą eskaluojantis bandymas suprasti kitą pusę 
-              </Accordion.Toggle>
-            </Card.Header>
-            <Accordion.Collapse eventKey="0">
-              <Card.Body>
-                   <Row>
-                        <Col><b>Stebėjimas sulipęs su vertinimu </b></Col>
-                          <Col><b>Nesuprastas jausmas</b></Col>
-                         <Col><b>Nesuprastas poreikis</b></Col>
-                    </Row>
-                  <Row>
-                      <p></p>{" "}
-                  </Row>
-                      <Row>                        
-                          <Col>Kai mes diskutuojame tavo tonas nuolat<sup>1</sup> pakeltas<sup>2</sup></Col>
-                          <Col>nesuprantu kas tau yra</Col>
-                          <Col>ko tu čia keli tą balsą?</Col>                        
-                    </Row>
-               
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-      </div>
-          </Accordion>
-    <Accordion >
-        <div className="text">
-          <Card>
-            <Card.Header>
-              <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                 1. Pavyzdys - konstruktyvus bandymas suprasti kitą pusę
-              </Accordion.Toggle>
-            </Card.Header>
-            <Accordion.Collapse eventKey="0">
-              <Card.Body>
-             <Row>
-                        <Col><b>Stebėjimas atskirtas nuo vertinimo</b></Col>
-                          <Col><b>Jausmas</b></Col>
-                         <Col><b>Poreikis</b></Col>
-                    </Row>
-                  <Row>
-                      <p></p>{" "}
-                  </Row>
-                      <Row>                        
-                          <Col><i><b>Pastebiu</b></i>, kad kai mes pastaruosius tris kartus diskutavome<sup>1</sup> - tavo balso tonas pakildavo<sup>2</sup> viduryje pokalbio</Col>
-                          <Col>iš to <i><b>spėju kad jauti</b></i> susierzines</Col>
-                         <Col>ar gerai tave suprantu, kad tau <i><b>norisi daugiau </b></i> empatijos kai mes deskutuojame?</Col>
-                        
-                    </Row>
-               
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-      </div>
-          </Accordion>
-          
-      <Accordion >
-        <div className="text">
-          <Card>
-            <Card.Header>
-              <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                <b>1. Žingsnis.</b> Atspindėjimas kitos pusės jausmus ir
-                poreikius.
-              </Accordion.Toggle>
-            </Card.Header>
-            <Accordion.Collapse eventKey="0">
-              <Card.Body>
-                  
-                <Row>
-                  <Col> 
-                    <p>
-                      <i>Pastebiu..</i>
-                    </p>
-                    <Form>
-                      <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Control as="textarea" rows={2} /> <br/>
-                        <Form.Control as="textarea" rows={2} />  <br/>
-                        <Form.Control as="textarea" rows={2} /> <br/>
-                      </Form.Group>
-                    </Form>
-                  </Col>
-                  <Col>
-                    <p>
-                      <i>iš to spėju kad jauti ...  </i>
-                    </p>
-                    {jausmaiAntra.map((element) => (
-                      <p className="text " style={{ color: "blue" }}>
-                        {element}
-                      </p>
-                    ))}{" "}
-                    {jausmaiKartu.map((element) => (
-                      <p className="text " style={{ color: "green" }}>
-                        {element}
-                      </p>
-                    ))}{" "}
-
-                  </Col>
-                  <Col>
-                    <p>
-                      <i> tau norisi daugiau ... ?</i>
-                    </p>
-                    {poreikiaiAntra.map((element) => (
-                      <p className="text " style={{ color: "blue" }}>
-                        {element}
-                      </p>
-                    ))}{" "}
-                    {poreikiaiKartu.map((element) => (
-                      <p className="text " style={{ color: "green" }}>
-                        {element}
-                      </p>
-                    ))}{" "}
-                  </Col>
-                
-                </Row>
+                </div>
               </Card.Body>
             </Accordion.Collapse>
           </Card>
-        </div>
-      </Accordion>
+        </Accordion>
 
-      <hr />
-           <Accordion >
-        <div className="text">
+        <Accordion>
           <Card>
             <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                   2. Pavyzdys - konfliktą eskaluojantis bandymas išreikšti savo pusę
+                Kokius jausmus jaučime, kai poreikiai nėra patenkinti
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="0">
               <Card.Body>
-                   <Row>
-                        <Col><b>Stebėjimas sulipęs su vertinimu </b></Col>
-                        <Col><b>Neišreikštas jausmas</b></Col>
-                         <Col><b>Neišreištas poreikis</b></Col>
-                         <Col><b>Reikalavimas</b></Col>
-                    </Row>
+                {" "}
+                <div className="Column">
                   <Row>
-                      <p></p>{" "}
+                    {NEEDS_UNMET_MANTAS.map((s) => (
+                      <div className="jausmai">
+                        <h4>{s.title}</h4>
+                        <div style={spalva} onClick={(e) => setColor(e)}>
+                          <ol>
+                            {s.elements.map((jausmas) => (
+                              <Col>
+                                <li
+                                  className={cbox ? "hidden" : undefined}
+                                  key={jausmas}
+                                >
+                                  {jausmas}
+                                </li>
+                              </Col>
+                            ))}
+                          </ol>
+                        </div>
+                      </div>
+                    ))}
                   </Row>
-   <Row>
-                           
-                          <Col>Kai tik diskutuojam<sup>1</sup> taip ir susipykstam <sup>2</sup></Col>
-                          <Col>jaučiu, kad mes visai nesuderinami</Col>
-                         <Col>kiek galima taip pyktis</Col>
-                         <Col>prašau, kad kitą syk susitvardytum kai kalbėsimės!</Col>
-                         
-                         
-                    </Row>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-      </div>
-          </Accordion>
-                     <Accordion >
-        <div className="text">
+                </div>
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+        </Accordion>
+
+        <Accordion>
           <Card>
             <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="0">
-               2. Pavyzdys - konstruktyvus bandymas išreikšti savo pusę
+                Jausmai, kai poreikiai patenkinti
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="0">
               <Card.Body>
-                                                                          <Row>
-                           
-                        <Col><b>Stebėjimas atskirtas nuo vertinimo</b></Col>
-                        <Col><b>Jausmas</b></Col>
-                         <Col><b>Poreikis</b></Col>
-                         <Col><b>Prašymas + strategija</b></Col>
-                    </Row>
+                {" "}
+                <div className="Column">
                   <Row>
-                      <p></p>{" "}
+                    {NEEDS_MET_ROL.map((s) => (
+                      <div className="jausmai">
+                        <h4>{s.title}</h4>
+                        <div style={spalva} onClick={(e) => setColor(e)}>
+                          <ol>
+                            {s.elements.map((jausmas) => (
+                              <Col>
+                                <li
+                                  className={cbox ? "hidden" : undefined}
+                                  key={jausmas}
+                                  key={jausmas}
+                                >
+                                  {jausmas}
+                                </li>
+                              </Col>
+                            ))}
+                          </ol>
+                        </div>
+                      </div>
+                    ))}
                   </Row>
-  
-                                      <Row>
-                           
-                          <Col><i><b>Pastebiu</b></i>, kad kai mes pastaruosius tris diskutavome<sup>1</sup> - susipykome <sup>2</sup></Col>
-                          <Col><i><b> jaučiu  </b></i> liūdesį</Col>
-                         <Col>man <i><b>norisi daugiau</b></i> darnos kai mes diskutuojame</Col>
-                         <Col><i><b>ar tau tiktų </b></i> jeigu diskutuodami pradžioje pasistengtume įvardinti kokius jausmus jaučiame apie diskutuojamą situaciją ? </Col>
+                </div>
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+        </Accordion>
+        <hr />
+        <Container>
+          <p>
+            Konstruktyvus konflikto deeskalavimas atsižvelgiant į abiejų pusių
+            poreikius ir jausmus.
+          </p>
+          <Accordion>
+            <div className="text">
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                    1. Pavyzdys - konfliktą eskaluojantis bandymas suprasti kitą
+                    pusę
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body>
+                    <Row>
+                      <Col>
+                        <b>Stebėjimas sulipęs su vertinimu </b>
+                      </Col>
+                      <Col>
+                        <b>Nesuprastas jausmas</b>
+                      </Col>
+                      <Col>
+                        <b>Nesuprastas poreikis</b>
+                      </Col>
                     </Row>
+                    <Row>
+                      <p></p>{" "}
+                    </Row>
+                    <Row>
+                      <Col>
+                        Kai mes diskutuojame tavo tonas nuolat<sup>1</sup>{" "}
+                        pakeltas<sup>2</sup>
+                      </Col>
+                      <Col>nesuprantu kas tau yra</Col>
+                      <Col>ko tu čia keli tą balsą?</Col>
+                    </Row>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </div>
+          </Accordion>
+          <Accordion>
+            <div className="text">
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                    1. Pavyzdys - konstruktyvus bandymas suprasti kitą pusę
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body>
+                    <Row>
+                      <Col>
+                        <b>Stebėjimas atskirtas nuo vertinimo</b>
+                      </Col>
+                      <Col>
+                        <b>Jausmas</b>
+                      </Col>
+                      <Col>
+                        <b>Poreikis</b>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <p></p>{" "}
+                    </Row>
+                    <Row>
+                      <Col>
+                        <i>
+                          <b>Pastebiu</b>
+                        </i>
+                        , kad kai mes pastaruosius tris kartus diskutavome
+                        <sup>1</sup> - tavo balso tonas pakildavo<sup>2</sup>{" "}
+                        viduryje pokalbio
+                      </Col>
+                      <Col>
+                        iš to{" "}
+                        <i>
+                          <b>spėju kad jauti</b>
+                        </i>{" "}
+                        susierzines
+                      </Col>
+                      <Col>
+                        ar gerai tave suprantu, kad tau{" "}
+                        <i>
+                          <b>norisi daugiau </b>
+                        </i>{" "}
+                        empatijos kai mes deskutuojame?
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </div>
+          </Accordion>
+
+          <Accordion>
+            <div className="text">
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                    <b>1. Žingsnis.</b> Atspindėjimas kitos pusės jausmus ir
+                    poreikius.
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body>
+                    <Row>
+                      <Col>
+                        <p>
+                          <i>Pastebiu..</i>
+                        </p>
+                        <Form>
+                          <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <Form.Control as="textarea" rows={2} /> <br />
+                            <Form.Control as="textarea" rows={2} /> <br />
+                            <Form.Control as="textarea" rows={2} /> <br />
+                          </Form.Group>
+                        </Form>
+                      </Col>
+                      <Col>
+                        <p>
+                          <i>iš to spėju kad jauti ... </i>
+                        </p>
+                        {jausmaiAntra.map((element) => (
+                          <p className="text " style={{ color: "blue" }}>
+                            {element}
+                          </p>
+                        ))}{" "}
+                        {jausmaiKartu.map((element) => (
+                          <p className="text " style={{ color: "green" }}>
+                            {element}
+                          </p>
+                        ))}{" "}
+                      </Col>
+                      <Col>
+                        <p>
+                          <i> tau norisi daugiau ... ?</i>
+                        </p>
+                        {poreikiaiAntra.map((element) => (
+                          <p className="text " style={{ color: "blue" }}>
+                            {element}
+                          </p>
+                        ))}{" "}
+                        {poreikiaiKartu.map((element) => (
+                          <p className="text " style={{ color: "green" }}>
+                            {element}
+                          </p>
+                        ))}{" "}
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </div>
+          </Accordion>
+
+          <hr />
+          <Accordion>
+            <div className="text">
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                    2. Pavyzdys - konfliktą eskaluojantis bandymas išreikšti
+                    savo pusę
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body>
+                    <Row>
+                      <Col>
+                        <b>Stebėjimas sulipęs su vertinimu </b>
+                      </Col>
+                      <Col>
+                        <b>Neišreikštas jausmas</b>
+                      </Col>
+                      <Col>
+                        <b>Neišreištas poreikis</b>
+                      </Col>
+                      <Col>
+                        <b>Reikalavimas</b>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <p></p>{" "}
+                    </Row>
+                    <Row>
+                      <Col>
+                        Kai tik diskutuojam<sup>1</sup> taip ir susipykstam{" "}
+                        <sup>2</sup>
+                      </Col>
+                      <Col>jaučiu, kad mes visai nesuderinami</Col>
+                      <Col>kiek galima taip pyktis</Col>
+                      <Col>
+                        prašau, kad kitą syk susitvardytum kai kalbėsimės!
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </div>
+          </Accordion>
+          <Accordion>
+            <div className="text">
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                    2. Pavyzdys - konstruktyvus bandymas išreikšti savo pusę
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body>
+                    <Row>
+                      <Col>
+                        <b>Stebėjimas atskirtas nuo vertinimo</b>
+                      </Col>
+                      <Col>
+                        <b>Jausmas</b>
+                      </Col>
+                      <Col>
+                        <b>Poreikis</b>
+                      </Col>
+                      <Col>
+                        <b>Prašymas + strategija</b>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <p></p>{" "}
+                    </Row>
+
+                    <Row>
+                      <Col>
+                        <i>
+                          <b>Pastebiu</b>
+                        </i>
+                        , kad kai mes pastaruosius tris diskutavome<sup>1</sup>{" "}
+                        - susipykome <sup>2</sup>
+                      </Col>
+                      <Col>
+                        <i>
+                          <b> jaučiu </b>
+                        </i>{" "}
+                        liūdesį
+                      </Col>
+                      <Col>
+                        man{" "}
+                        <i>
+                          <b>norisi daugiau</b>
+                        </i>{" "}
+                        darnos kai mes diskutuojame
+                      </Col>
+                      <Col>
+                        <i>
+                          <b>ar tau tiktų </b>
+                        </i>{" "}
+                        jeigu diskutuodami pradžioje pasistengtume įvardinti
+                        kokius jausmus jaučiame apie diskutuojamą situaciją ?{" "}
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </div>
+          </Accordion>
+          <Accordion className="text">
+            <Card>
+              <Card.Header>
+                <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                  <b>2. Žingsnis.</b> Išsakymas savo jausmų ir poreikių.
+                </Accordion.Toggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey="0">
+                <Card.Body>
+                  <Row>
+                    <Col>
+                      <p>
+                        <i>Pastebiu...</i>
+                      </p>
+                      <Form>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                          <Form.Control as="textarea" rows={2} />
+                          <br />
+                          <Form.Control as="textarea" rows={2} />
+                          <br />
+                          <Form.Control as="textarea" rows={2} />
+                          <br />
+                        </Form.Group>
+                      </Form>
+                    </Col>
+                    <Col>
+                      <p>
+                        <i>jaučiu...</i>
+                      </p>
+                      {jausmaiPirma.map((element) => (
+                        <p className="text " style={{ color: "red" }}>
+                          {element}
+                        </p>
+                      ))}{" "}
+                      {jausmaiKartu.map((element) => (
+                        <p className="text " style={{ color: "green" }}>
+                          {element}
+                        </p>
+                      ))}{" "}
+                    </Col>
+                    <Col>
+                      <p>
+                        <i>man norisi daugiau...</i>
+                      </p>
+                      {poreikiaiPirma.map((element) => (
+                        <p className="text " style={{ color: "red" }}>
+                          {element}
+                        </p>
+                      ))}{" "}
+                      {poreikiaiKartu.map((element) => (
+                        <p className="text " style={{ color: "green" }}>
+                          {element}
+                        </p>
+                      ))}{" "}
+                    </Col>
+                    <Col>
+                      <p>
+                        <i>ar tau tiktų jeigu...?</i>
+                      </p>
+                    </Col>
+                  </Row>
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
-      </div>
           </Accordion>
-      <Accordion className="text">
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle as={Button} variant="link" eventKey="0">
-              <b>2. Žingsnis.</b> Išsakymas savo jausmų ir poreikių.
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>     
-              <Row>
-                <Col>
-                  <p>
-                    <i>Pastebiu...</i>
-                  </p>
-                  <Form>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                      <Form.Control as="textarea" rows={2} /><br/>
-                     <Form.Control as="textarea" rows={2} /><br/>
-                        <Form.Control as="textarea" rows={2} /><br/>
-                    </Form.Group>
-                  </Form>
-                </Col>
-                <Col>
-                  <p>
-                    <i>jaučiu...</i>
-                  </p>
-                  {jausmaiPirma.map((element) => (
-                    <p className="text " style={{ color: "red" }}>
-                      {element}
-                    </p>
-                  ))}{" "}
-                  {jausmaiKartu.map((element) => (
-                    <p className="text " style={{ color: "green" }}>
-                      {element}
-                    </p>
-                  ))}{" "}
-                </Col>
-                <Col>
-                  <p>                 
-                  
-                    <i>man norisi daugiau...</i>
-                  </p>
-                  {poreikiaiPirma.map((element) => (
-                    <p className="text " style={{ color: "red" }}>
-                      {element}
-                    </p>
-                  ))}{" "}
-                  {poreikiaiKartu.map((element) => (
-                    <p className="text " style={{ color: "green" }}>
-                      {element}
-                    </p>
-                  ))}{" "}
-
-                </Col>
-                <Col>
-                  <p>                    
-                    <i>ar tau tiktų jeigu...?</i>
-                  </p>
-
-                </Col>
-              </Row>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
+        </Container>
       </Container>
-    </Container>
-    <Footer/>
+      <Footer />
     </>
   );
 }
