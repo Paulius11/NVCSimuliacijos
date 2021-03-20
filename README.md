@@ -7,5 +7,5 @@ https://paulius11.github.io/NVCSimuliacijos/
 `npm run deploy` 
 
 ## Demo 
-![Test Image 1](Demo.PNG)
+![Test Image 1](Demo.png)
 
