@@ -3,6 +3,7 @@ import "./styles.css";
 import InlineEdit from "./components/inlineEdit";
 import Element from "./components/Card";
 import Footer from "./components/Footer";
+import PseudoJausmai from "./components/PseudoJausmai";
 import {
   NEEDS_COMMON_ROL,
   NEEDS_UNMET_ROL,
@@ -708,6 +709,8 @@ export default function App() {
               </Accordion.Collapse>
             </Card>
           </Accordion>
+
+          <PseudoJausmai />
         </Container>
       </Container>
       <Footer />

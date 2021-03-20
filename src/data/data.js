@@ -1,5 +1,7 @@
 // Pagal Rolando http://empatijosbendruomene.lt/
 
+export const PSEUDO_JAUSMAI = ["Apgautas", "Apleistas", "Atstumtas", "Baudžiamas", "Globojamas", "Grasinamas", "Ignoruojamas", "Įkalintas", "Įstumtas į kampą", "Išduotas", "Išgirstas", "Išnaudojamas", "Išstumtas", "Įžeistas", "Kaltinamas", "Kritikuojamas", "Mylimas", "Manipuliuojamas", "Negerbiamas", "Neišgirstas", "Nematomas", "Nepageidaujamas", "Nepripažintas", "Nereikalingas", "Nesuprastas", "Nesvarbus", "Nugalėtas", "Nuvertintas", "Nuviltas", "Pagerbtas", "Palaikomas", "Paliktas", "Spaudžiamas", "Sumenkintas", "Suprastas", "Teisiamas", "Užgniaužtas", "Užpultas" ,"Varginamas", "Verčiamas" ]
+
 export const NEEDS_COMMON_ROL= [
   { title: '', elements: []  },
   { title: 'Ryšys', elements: ['Ryšys', 'Priėmimas','Pagarba', 'Dalijimasis', 'Įsitraukimas', 'Pritarimas', 'Švelnumas', 'Įvertinimas', 'Priklausymas', 'Bendrumas', 'Rūpinimasis', 'Atidumas', 'Globa', 'Artumas', 'Komunikacija', 'Bendravimas', 'Bendruomenė', 'Draugija', 'Draugystė', 'Atjauta', 'Užuojauta', 'Dėmesys', 'Empatija', 'Įkvėpimas', 'Vientisumas', 'Intymumas', 'Meilė', "Partnerystė",'Buvimas kartu',  'Savigarba', 'Savęs priėmimas', 'Rūpinimasis savimi', 'Ryšys su savimi', 'Savęs išreiškimas', 'Girdėti ir būti išgirstu', 'Bendra tikrovė', 'Dalinimasis tikrove', 'Stabilumas', 'Palaikymas', 'Pažinti', 'Būti pažintam', 'Pastebėti', 'Būti pastebėtam', 'Pasitikėjimas', 'Supratimas']  },

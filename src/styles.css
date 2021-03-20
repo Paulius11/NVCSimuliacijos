@@ -18,6 +18,10 @@
 	}
 }
 
+/* highligt example text in pseudo-feelings */
+.example {
+  color: blueviolet;
+}
 .options{
 }
 .add{
